@@ -1,0 +1,96 @@
+.gameContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+}
+
+.header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    z-index: 10;
+}
+
+.backBtn {
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.backBtn:hover {
+    color: white;
+}
+
+.turnBadge {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.chatArea {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    /* Scrollbar custom */
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-secondary) transparent;
+}
+
+.controlsArea {
+    padding: 1rem;
+    background: linear-gradient(to top, var(--bg-color) 20%, transparent);
+}
+
+.endGameCard {
+    padding: 2rem;
+    text-align: center;
+}
+
+.endGameCard h3 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    background: var(--bg-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.scoreBoard {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--glass-border);
+    animation: fadeIn 0.8s ease-out;
+}
+
+.scoreValue {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    text-shadow: 0 0 15px rgba(129, 140, 248, 0.5);
+}
+
+.scoreRank {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+.restartBtn {
+    background: var(--accent-color);
+    color: #064e3b;
+    font-weight: bold;
+    padding: 0.75rem 2rem;
+    border-radius: var(--radius-md);
+    box-shadow: 0 0 15px rgba(74, 222, 128, 0.4);
+}
