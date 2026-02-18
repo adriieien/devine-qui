@@ -1,0 +1,10 @@
+{
+  "appId": "com.devinequi.app",
+  "appName": "Devine Qui Historique",
+  "webDir": "dist",
+  "server": {
+    "allowNavigation": [
+      "localhost"
+    ]
+  }
+}

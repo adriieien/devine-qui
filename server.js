@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import OpenAI from 'openai';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -19,9 +19,12 @@ app.use((req, res, next) => {
     next();
 });
 
-// Gemini Setup
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+// xAI Setup (OpenAI-compatible API)
+const client = new OpenAI({
+    apiKey: process.env.XAI_API_KEY,
+    baseURL: 'https://api.x.ai/v1',
+});
+const MODEL = "grok-code-fast-1";
 
 
 // Game Logic - AI Persona
@@ -48,32 +51,35 @@ app.post('/api/ask', async (req, res) => {
     try {
         const { message, character, history } = req.body;
 
-        // Construct chat history or context
-        const chat = model.startChat({
-            history: [
-                {
-                    role: "user",
-                    parts: [{ text: `${SYSTEM_PROMPT}\n\nLe personnage secret est : ${character.name}. Description : ${character.description}. Ses tags sont : ${character.tags.join(', ')}.` }],
-                },
-                {
-                    role: "model",
-                    parts: [{ text: "Compris. Je suis prêt à jouer. Je ne révélerai pas le nom. Pose ta question." }]
-                },
-            ],
-            generationConfig: {
-                maxOutputTokens: 150,
+        // Build messages array in OpenAI format
+        const messages = [
+            {
+                role: "system",
+                content: `${SYSTEM_PROMPT}\n\nLe personnage secret est : ${character.name}. Description : ${character.description}. Ses tags sont : ${character.tags.join(', ')}.`
             },
+            {
+                role: "assistant",
+                content: "Compris. Je suis prêt à jouer. Je ne révélerai pas le nom. Pose ta question."
+            },
+            {
+                role: "user",
+                content: message
+            }
+        ];
+
+        const completion = await client.chat.completions.create({
+            model: MODEL,
+            messages: messages,
+            max_tokens: 150,
         });
 
-        const result = await chat.sendMessage(message);
-        console.log("Gemini response generated");
-        const response = await result.response;
-        const text = response.text();
+        const text = completion.choices[0].message.content;
+        console.log("xAI response generated");
 
         res.json({ text: text });
 
     } catch (error) {
-        console.error('Error calling Gemini:', error);
+        console.error('Error calling xAI:', error);
         res.status(500).json({ text: `Désolé, j'ai eu un trou de mémoire (Erreur API: ${error.message}).` });
     }
 });

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { GameEngine } from '../logic/GameEngine';
 import ChatMessage from './ChatMessage';
 import QuestionMenu from './QuestionMenu';
+import VictoryScreen from './VictoryScreen';
 import styles from './GameInterface.module.css';
 
 export default function GameInterface({ onExit }) {
@@ -9,12 +10,22 @@ export default function GameInterface({ onExit }) {
     const [messages, setMessages] = useState([]);
     const [gameStatus, setGameStatus] = useState('playing'); // playing, won, lost
     const [usedQuestions, setUsedQuestions] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
         // Start game on mount
         const intro = engine.startNewGame();
-        setMessages([intro]);
+        const rulesMsg = {
+            text: `📜 Règles du jeu :\n\n` +
+                `🎯 Je pense à un personnage historique français. Tu dois deviner qui c'est !\n\n` +
+                `💬 Pose-moi des questions en tapant dans la barre ci-dessous (ex: "C'est un homme ?", "Il a vécu au 19ème siècle ?", "Il était roi ?")\n\n` +
+                `🤔 Quand tu penses savoir, utilise le champ "Je pense que c'est..." pour proposer un nom.\n\n` +
+                `💡 Tu peux demander un indice, mais ça te coûtera 150 points !\n\n` +
+                `⏳ Tu as ${engine.maxTurns} tours pour deviner. Bonne chance ! 🍀`,
+            sender: 'ai'
+        };
+        setMessages([rulesMsg, intro]);
     }, [engine]);
 
     useEffect(() => {
@@ -42,57 +53,79 @@ export default function GameInterface({ onExit }) {
         setMessages(prev => [...prev, userMsg]);
 
         // Call API
+        setIsLoading(true);
         try {
             const response = await engine.askQuestion(category, value);
             if (response) {
-                setMessages(prev => [...prev, { text: response.text, sender: 'ai' }]);
-                if (response.answer === 'lost') setGameStatus('lost');
+                // Si c'est une victoire via Smart Guess (détectée dans askQuestion)
+                if (response.status === 'won') {
+                    setMessages(prev => [...prev, {
+                        text: response.text,
+                        sender: 'ai',
+                        score: response.score,
+                        rank: response.rank
+                    }]);
+                    setGameStatus('won');
+                } else {
+                    setMessages(prev => [...prev, { text: response.text, sender: 'ai' }]);
+                    if (response.answer === 'lost') setGameStatus('lost');
+                }
             }
         } catch (e) {
             console.error("Error asking question:", e);
+        } finally {
+            setIsLoading(false);
         }
     };
 
     const handleGuess = async (name) => {
-        if (gameStatus !== 'playing') return;
+        if (gameStatus !== 'playing' || isLoading) return;
 
         const userMsg = { text: `Je pense que c'est ${name}`, sender: 'user' };
         setMessages(prev => [...prev, userMsg]);
+        setIsLoading(true);
 
-        const response = await engine.guessCharacter(name);
-        if (response) {
-            setMessages(prev => [...prev, {
-                text: response.text,
-                sender: 'ai',
-                score: response.score, // Passer le score au message
-                rank: response.rank
-            }]);
+        try {
+            const response = await engine.guessCharacter(name);
+            if (response) {
+                setMessages(prev => [...prev, {
+                    text: response.text,
+                    sender: 'ai',
+                    score: response.score, // Passer le score au message
+                    rank: response.rank
+                }]);
 
-            if (response.status === 'won') {
-                setGameStatus('won');
+                if (response.status === 'won') {
+                    setGameStatus('won');
+                }
             }
+        } finally {
+            setIsLoading(false);
         }
     };
 
     const handleHint = () => {
-        if (gameStatus !== 'playing') return;
+        if (gameStatus !== 'playing' || isLoading) return;
 
         const userMsg = { text: "Donne-moi un indice !", sender: 'user' };
         setMessages(prev => [...prev, userMsg]);
+        setIsLoading(true);
 
         setTimeout(() => {
             const response = engine.getHint();
             if (response) {
                 setMessages(prev => [...prev, { text: response.text, sender: 'ai' }]);
             }
+            setIsLoading(false);
         }, 600);
     };
 
     const handleGiveUp = () => {
-        if (gameStatus !== 'playing') return;
+        if (gameStatus !== 'playing' || isLoading) return;
 
         const userMsg = { text: "Je donne ma langue au chat.", sender: 'user' };
         setMessages(prev => [...prev, userMsg]);
+        setIsLoading(true);
 
         setTimeout(() => {
             const response = engine.giveUp();
@@ -100,6 +133,7 @@ export default function GameInterface({ onExit }) {
                 setMessages(prev => [...prev, { text: response.text, sender: 'ai' }]);
                 setGameStatus('lost');
             }
+            setIsLoading(false);
         }, 600);
     };
 
@@ -107,8 +141,19 @@ export default function GameInterface({ onExit }) {
         setUsedQuestions([]);
         setGameStatus('playing');
         const intro = engine.startNewGame();
-        setMessages([intro]);
+        const rulesMsg = {
+            text: `📜 Règles du jeu :\n\n` +
+                `🎯 Je pense à un personnage historique français. Tu dois deviner qui c'est !\n\n` +
+                `💬 Pose-moi des questions en tapant dans la barre ci-dessous (ex: "C'est un homme ?", "Il a vécu au 19ème siècle ?", "Il était roi ?")\n\n` +
+                `🤔 Quand tu penses savoir, utilise le champ "Je pense que c'est..." pour proposer un nom.\n\n` +
+                `💡 Tu peux demander un indice, mais ça te coûtera 150 points !\n\n` +
+                `⏳ Tu as ${engine.maxTurns} tours pour deviner. Bonne chance ! 🍀`,
+            sender: 'ai'
+        };
+        setMessages([rulesMsg, intro]);
     };
+
+    const lastMsg = messages.length > 0 ? messages[messages.length - 1] : {};
 
     return (
         <div className={styles.gameContainer}>
@@ -132,21 +177,31 @@ export default function GameInterface({ onExit }) {
                         onHint={handleHint}
                         onGiveUp={handleGiveUp}
                         usedQuestions={usedQuestions}
+                        disabled={isLoading}
+                        isLoading={isLoading}
                     />
-                ) : (
+                ) : gameStatus === 'lost' ? (
                     <div className={`${styles.endGameCard} glass-panel`}>
-                        <h3>{gameStatus === 'won' ? "Victoire !" : "Perdu..."}</h3>
-                        {/* Affichage du score si victoire */}
-                        {gameStatus === 'won' && messages.length > 0 && messages[messages.length - 1].score !== undefined && (
-                            <div className={styles.scoreBoard}>
-                                <div className={styles.scoreValue}>{messages[messages.length - 1].score} pts</div>
-                                <div className={styles.scoreRank}>Rang: {messages[messages.length - 1].rank}</div>
-                            </div>
-                        )}
-                        <button onClick={handleRestartGame} className={styles.restartBtn}>Rejouer</button>
+                        <h3>Perdu...</h3>
+                        <p className={styles.lostText}>Le personnage mystère était <strong>{engine.secretCharacter?.name}</strong>.</p>
+                        <p className={styles.lostDescription}>{engine.secretCharacter?.description}</p>
+                        <button onClick={handleRestartGame} className={styles.restartBtn}>🔄 Rejouer</button>
                     </div>
-                )}
+                ) : null}
             </div>
+
+            {/* Victory overlay */}
+            {gameStatus === 'won' && (
+                <VictoryScreen
+                    score={lastMsg.score}
+                    rank={lastMsg.rank}
+                    character={engine.secretCharacter}
+                    turnCount={engine.turnCount}
+                    maxTurns={engine.maxTurns}
+                    hintsUsed={engine.hintsUsed}
+                    onRestart={handleRestartGame}
+                />
+            )}
         </div>
     );
 }

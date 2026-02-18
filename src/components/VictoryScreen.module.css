@@ -1,0 +1,292 @@
+.victoryOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    animation: overlayIn 0.4s ease-out;
+}
+
+@keyframes overlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.confettiCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.victoryCard {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+    border: 1px solid rgba(129, 140, 248, 0.3);
+    border-radius: 1.5rem;
+    padding: 2.5rem 2rem;
+    max-width: 440px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    text-align: center;
+    box-shadow:
+        0 0 40px rgba(129, 140, 248, 0.15),
+        0 25px 50px rgba(0, 0, 0, 0.4);
+
+    transform: scale(0.8) translateY(20px);
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.victoryCard.visible {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+/* Rank Badge */
+.rankBadge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--rank-color, #818cf8);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--rank-color, #818cf8) 30%, transparent);
+    margin-bottom: 1rem;
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px color-mix(in srgb, var(--rank-color, #818cf8) 30%, transparent);
+    }
+
+    50% {
+        box-shadow: 0 0 35px color-mix(in srgb, var(--rank-color, #818cf8) 50%, transparent);
+    }
+}
+
+.rankEmoji {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.rankLabel {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--rank-color, #818cf8);
+    letter-spacing: 2px;
+}
+
+/* Title */
+.title {
+    font-size: 1.8rem;
+    margin: 0.5rem 0 0.25rem;
+    background: linear-gradient(135deg, #818cf8, #a78bfa, #f472b6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary, #94a3b8);
+    margin-bottom: 1.25rem;
+}
+
+/* Character Card */
+.characterCard {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+    animation: slideUp 0.5s ease-out 0.4s both;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.characterName {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.4rem;
+}
+
+.characterDescription {
+    font-size: 0.85rem;
+    color: var(--text-secondary, #94a3b8);
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+}
+
+.tagList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+}
+
+.tag {
+    background: rgba(129, 140, 248, 0.15);
+    color: #a5b4fc;
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(129, 140, 248, 0.2);
+}
+
+/* Score */
+.scoreSection {
+    margin: 1rem 0;
+    animation: slideUp 0.5s ease-out 0.6s both;
+}
+
+.scoreNumber {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: 0 0 30px currentColor;
+}
+
+.scoreLabel {
+    font-size: 0.9rem;
+    color: var(--text-secondary, #94a3b8);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 0.25rem;
+}
+
+/* Stats Grid */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+    animation: slideUp 0.5s ease-out 0.8s both;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.6rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.statIcon {
+    font-size: 1.2rem;
+}
+
+.statValue {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: white;
+}
+
+.statLabel {
+    font-size: 0.65rem;
+    color: var(--text-secondary, #94a3b8);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Breakdown */
+.breakdown {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    animation: slideUp 0.5s ease-out 1s both;
+}
+
+.breakdownRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.35rem 0;
+    font-size: 0.8rem;
+    color: var(--text-secondary, #94a3b8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.breakdownRow:last-child {
+    border-bottom: none;
+}
+
+.penalty {
+    color: #f87171;
+}
+
+.bonus {
+    color: #34d399;
+    font-weight: 600;
+}
+
+/* Restart Button */
+.restartBtn {
+    background: linear-gradient(135deg, #818cf8, #6366f1);
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.9rem 2.5rem;
+    border-radius: 0.75rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(129, 140, 248, 0.3);
+    animation: slideUp 0.5s ease-out 1.2s both;
+}
+
+.restartBtn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 25px rgba(129, 140, 248, 0.5);
+}
+
+.restartBtn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Scrollbar */
+.victoryCard::-webkit-scrollbar {
+    width: 4px;
+}
+
+.victoryCard::-webkit-scrollbar-thumb {
+    background: rgba(129, 140, 248, 0.3);
+    border-radius: 2px;
+}

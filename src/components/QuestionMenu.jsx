@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
 import styles from './QuestionMenu.module.css';
 
-export default function QuestionMenu({ onAsk, onGuess, onHint, onGiveUp, usedQuestions = [] }) {
+export default function QuestionMenu({ onAsk, onGuess, onHint, onGiveUp, usedQuestions = [], disabled, isLoading }) {
+    const [guessInput, setGuessInput] = useState('');
     const [questionInput, setQuestionInput] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleGuessSubmit = (e) => {
         e.preventDefault();
-        if (questionInput.trim()) {
-            // Envoi en tant que catégorie spéciale 'free-text'
-            // Le GameEngine se charge de détecter si c'est une devinette (Smart Guess)
+        if (guessInput.trim() && !disabled) {
+            onGuess(guessInput);
+            setGuessInput('');
+        }
+    };
+
+    const handleQuestionSubmit = (e) => {
+        e.preventDefault();
+        if (questionInput.trim() && !disabled) {
             onAsk('free-text', questionInput);
             setQuestionInput('');
         }
@@ -16,22 +23,36 @@ export default function QuestionMenu({ onAsk, onGuess, onHint, onGiveUp, usedQue
 
     return (
         <div className={`${styles.menuContainer} glass-panel`}>
-            <div className={styles.inputArea}>
-                <form onSubmit={handleSubmit} className={styles.freeForm}>
-                    <input
-                        type="text"
-                        placeholder="Posez une question ou proposez un nom..."
-                        value={questionInput}
-                        onChange={(e) => setQuestionInput(e.target.value)}
-                        className={styles.mainInput}
-                        autoFocus
-                    />
-                    <button type="submit" className={styles.sendBtn}>Envoyer</button>
-                </form>
+            <div className={styles.bottomBar}>
+                <div className={styles.formsContainer}>
+                    <form onSubmit={handleQuestionSubmit} className={styles.freeForm}>
+                        <input
+                            type="text"
+                            placeholder={disabled ? "L'IA réfléchit..." : "Pose ta question ici..."}
+                            value={questionInput}
+                            onChange={(e) => setQuestionInput(e.target.value)}
+                            disabled={disabled}
+                            className={styles.freeInput}
+                        />
+                        <button type="submit" disabled={disabled} className={styles.actionBtn}>Demander</button>
+                    </form>
 
-                <div className={styles.actionsRow}>
-                    <button className={styles.hintBtn} onClick={onHint}>💡 Indice (-150 pts)</button>
-                    <button className={styles.giveUpBtn} onClick={onGiveUp}>🏳️ Abandonner</button>
+                    <form onSubmit={handleGuessSubmit} className={styles.guessForm}>
+                        <input
+                            type="text"
+                            placeholder={disabled ? "..." : "Je pense que c'est..."}
+                            value={guessInput}
+                            onChange={(e) => setGuessInput(e.target.value)}
+                            disabled={disabled}
+                            className={styles.guessInput}
+                        />
+                        <button type="submit" disabled={disabled} className={styles.guessBtn}>Deviner</button>
+                    </form>
+                </div>
+
+                <div className={styles.actionButtons}>
+                    <button className={styles.hintBtn} onClick={onHint} disabled={disabled}>💡 Indice (-150 pts)</button>
+                    <button className={styles.giveUpBtn} onClick={onGiveUp} disabled={disabled}>🏳️ Abandonner</button>
                 </div>
             </div>
         </div>

@@ -84,14 +84,35 @@ export class GameEngine {
             const normalizedValue = value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             const normalizedName = this.secretCharacter.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-            // On vérifie si le nom est présent dans la phrase (ex: "est-ce moliere ?")
-            // Ou si l'entrée est très proche du nom
-            if (normalizedValue.includes(normalizedName) || normalizedName.includes(normalizedValue)) {
-                // On évite les faux positifs sur les mots courts (ex: "le", "un")
-                if (normalizedValue.length > 3) {
-                    console.log("Smart Guess Detected!", { value, secret: this.secretCharacter.name });
-                    return this.guessCharacter(value);
+            // 1. Check exact partial match (e.g. "Napoleon" in "Est-ce Napoleon ?")
+            // This covers full name usage inside a sentence.
+            if (normalizedValue.includes(normalizedName)) {
+                console.log("Smart Guess Matching (Full Name)!", { value, secret: this.secretCharacter.name });
+                return this.guessCharacter(value);
+            }
+
+            // 2. Keyword Matching (e.g. "De Gaulle" in "Charles de Gaulle")
+            // Split secret name into words, filter out small ones (le, la, de, du...) unless it's short
+            const secretWords = normalizedName.split(' ').filter(w => w.length > 2 || w === 'xiv' || w === 'xvi');
+
+            // Check if ANY significant secret word is present in user input
+            // But we must be careful with common first names like "Louis" or "Charles" if used alone.
+            // For now, let's say if we find a significant last name or unique keyword.
+
+            let matchCount = 0;
+            for (const word of secretWords) {
+                if (normalizedValue.includes(word)) {
+                    matchCount++;
                 }
+            }
+
+            // If we matched significant parts (e.g. "Gaulle" or "Bonaparte")
+            // Heuristic: If we matched at least one significant word of length > 3, OR multiple words.
+            const hasLongWordMatch = secretWords.some(w => w.length > 3 && normalizedValue.includes(w));
+
+            if (hasLongWordMatch || (matchCount >= 2 && secretWords.length > 0)) { // Corrected `format_words_length` to `secretWords.length`
+                console.log("Smart Guess Matching (Keyword)!", { value, secret: this.secretCharacter.name });
+                return this.guessCharacter(value);
             }
         }
 
