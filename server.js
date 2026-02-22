@@ -143,7 +143,7 @@ const __dirname = path.dirname(__filename);
 // Serve Frontend (production)
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('*', (req, res) => {
+app.get('{*path}', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
