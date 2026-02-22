@@ -15,7 +15,9 @@ app.use(express.json());
 // Request logging
 app.use((req, res, next) => {
     console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-    console.log('Body:', JSON.stringify(req.body).substring(0, 100) + '...');
+    if (req.body && Object.keys(req.body).length > 0) {
+        console.log('Body:', JSON.stringify(req.body).substring(0, 100) + '...');
+    }
     next();
 });
 
