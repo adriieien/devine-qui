@@ -90,7 +90,7 @@ function getRankStyle(rank) {
     }
 }
 
-export default function VictoryScreen({ score, rank, character, turnCount, maxTurns, hintsUsed, onRestart }) {
+export default function VictoryScreen({ score, rank, character, turnCount, totalQuestionsAsked, maxTurns, hintsUsed, onRestart }) {
     const [showContent, setShowContent] = useState(false);
     const [countedScore, setCountedScore] = useState(0);
     const rankInfo = getRankStyle(rank);
@@ -183,8 +183,8 @@ export default function VictoryScreen({ score, rank, character, turnCount, maxTu
                         <span>1500</span>
                     </div>
                     <div className={styles.breakdownRow}>
-                        <span>Questions posées ({turnCount}x)</span>
-                        <span className={styles.penalty}>-{(turnCount || 0) * 40}</span>
+                        <span>Questions posées ({totalQuestionsAsked || turnCount}x)</span>
+                        <span className={styles.penalty}>-{(totalQuestionsAsked || turnCount || 0) * 40}</span>
                     </div>
                     {hintsUsed > 0 && (
                         <div className={styles.breakdownRow}>

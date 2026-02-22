@@ -1,0 +1,109 @@
+.toggleBtn {
+    position: fixed;
+    right: 16px;
+    top: 70px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.toggleBtn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 20px rgba(129, 140, 248, 0.4);
+}
+
+.toggleBtn.open {
+    background: var(--accent-color);
+    color: white;
+}
+
+.panel {
+    position: fixed;
+    right: 16px;
+    top: 124px;
+    width: 280px;
+    max-height: 60vh;
+    padding: 1rem;
+    z-index: 49;
+    overflow-y: auto;
+    animation: slideIn 0.3s ease;
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-secondary) transparent;
+}
+
+.title {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+.empty {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-style: italic;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.factList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.factItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.4rem 0.5rem;
+    border-radius: var(--radius-sm, 6px);
+    background: rgba(255, 255, 255, 0.03);
+    font-size: 0.8rem;
+    line-height: 1.3;
+    animation: fadeIn 0.3s ease;
+}
+
+.factIcon {
+    flex-shrink: 0;
+    font-size: 0.85rem;
+}
+
+.factText {
+    color: var(--text-primary);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

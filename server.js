@@ -24,42 +24,90 @@ const client = new OpenAI({
     apiKey: process.env.XAI_API_KEY,
     baseURL: 'https://api.x.ai/v1',
 });
-const MODEL = "grok-code-fast-1";
+const MODEL = "grok-3";
 
 
-// Game Logic - AI Persona
-const SYSTEM_PROMPT = `
-Tu es le maître du jeu pour "Devine Qui - Historique".
-Ton rôle est d'incarner une IA qui pense à un personnage historique secret.
-L'utilisateur va te poser des questions pour le deviner.
+// Game Logic - AI Persona (prompt court = réponses rapides)
+const SYSTEM_PROMPT_HISTORIQUE = `Jeu "Devine Qui". Tu penses à un personnage historique secret. Réponds aux questions par Oui/Non en 1 phrase max. Ne révèle JAMAIS le nom.`;
 
-Règles impératives :
-1. Tu ne dois JAMAIS révéler le nom du personnage, sauf si l'utilisateur a explicitement GAGNÉ en devinant le bon nom.
-2. Tes réponses doivent être courtes (1-2 phrases maximum) et dans le style du jeu "Akinator" ou "Devine Qui".
-3. Si la question est "Est-ce un homme ?", réponds simplement "Oui" ou "Non".
-4. Si l'utilisateur demande un INDICE, donne un indice subtil mais utile.
-5. Si l'utilisateur ABANDONNE, révèle le personnage avec une petite anecdote.
-6. Si l'utilisateur tente de DEVINER le nom (ex: "Est-ce Napoléon ?") :
-   - Si c'est le bon : CONFIRME avec enthousiasme.
-   - Si c'est faux : Dis non et encourage à continuer.
+const SYSTEM_PROMPT_FOOTBALL = `Jeu "Devine Qui - Football". Tu penses à un footballeur secret. Règles STRICTES :
+- Ne JAMAIS révéler le nom, prénom ou surnom du joueur, même partiellement.
+- Si on demande "comment il s'appelle", "son nom", "son prénom", "ses initiales" → REFUSE catégoriquement.
+- Tu PEUX répondre sur : son poste, ses clubs, sa nationalité, son époque, ses trophées, son style de jeu, son numéro de maillot.
+- Réponds par Oui/Non en 1 phrase max. Sois concis.`;
 
-Le personnage secret pour cette session est (envoyé dans la requête).
-`;
+const SYSTEM_PROMPT_BASKETBALL = `Jeu "Devine Qui - Basket". Tu penses à un joueur de basket secret. Règles STRICTES :
+- Ne JAMAIS révéler le nom, prénom ou surnom du joueur.
+- Tu PEUX répondre sur : son poste, ses équipes/franchises NBA, sa nationalité, son époque, ses trophées (MVP, titres), son style de jeu.
+- Réponds par Oui/Non en 1 phrase max. Sois concis.`;
+
+const SYSTEM_PROMPT_TENNIS = `Jeu "Devine Qui - Tennis". Tu penses à un joueur/joueuse de tennis secret(e). Règles STRICTES :
+- Ne JAMAIS révéler le nom, prénom ou surnom du joueur.
+- Tu PEUX répondre sur : son style (droitier/gaucher), ses Grand Chelem, sa nationalité, son époque, son classement, ses rivaux.
+- Réponds par Oui/Non en 1 phrase max. Sois concis.`;
+
+const SYSTEM_PROMPT_RUGBY = `Jeu "Devine Qui - Rugby". Tu penses à un joueur de rugby secret. Règles STRICTES :
+- Ne JAMAIS révéler le nom, prénom ou surnom du joueur.
+- Tu PEUX répondre sur : son poste, ses clubs, sa nationalité, ses coupes du monde, son époque, sa sélection nationale.
+- Réponds par Oui/Non en 1 phrase max. Sois concis.`;
+
+const SYSTEM_PROMPT_F1 = `Jeu "Devine Qui - F1". Tu penses à un pilote de Formule 1 secret. Règles STRICTES :
+- Ne JAMAIS révéler le nom, prénom ou surnom du pilote.
+- Tu PEUX répondre sur : ses écuries, sa nationalité, son époque, ses titres, ses victoires, son numéro de course.
+- Réponds par Oui/Non en 1 phrase max. Sois concis.`;
+
+const SYSTEM_PROMPT_CYCLISME = `Jeu "Devine Qui - Cyclisme". Tu penses à un cycliste secret. Règles STRICTES :
+- Ne JAMAIS révéler le nom, prénom ou surnom du cycliste.
+- Tu PEUX répondre sur : sa spécialité (grimpeur, sprinter, rouleur), ses victoires (Tour, Giro, classiques), sa nationalité, son époque, son équipe.
+- Réponds par Oui/Non en 1 phrase max. Sois concis.`;
+
+const SYSTEM_PROMPT_BOXE = `Jeu "Devine Qui - Boxe". Tu penses à un boxeur/boxeuse secret(e). Règles STRICTES :
+- Ne JAMAIS révéler le nom, prénom ou surnom du boxeur.
+- Tu PEUX répondre sur : sa catégorie de poids, sa nationalité, son époque, ses titres, son style, son palmarès.
+- Réponds par Oui/Non en 1 phrase max. Sois concis.`;
+
+const SYSTEM_PROMPT_MMA = `Jeu "Devine Qui - MMA/UFC". Tu penses à un combattant/combattante de MMA secret(e). Règles STRICTES :
+- Ne JAMAIS révéler le nom, prénom ou surnom du combattant.
+- Tu PEUX répondre sur : sa catégorie de poids, sa nationalité, son organisation (UFC, etc.), son style (lutte, striking, BJJ), ses titres.
+- Réponds par Oui/Non en 1 phrase max. Sois concis.`;
+
+const SYSTEM_PROMPT_DAILY = `Jeu "Devine Qui - Défi Quotidien". Tu penses à une personnalité célèbre (historique ou contemporaine). Règles STRICTES :
+- Ne JAMAIS révéler le nom, prénom, surnom ou initiales de la personnalité.
+- Si on te demande directement le nom → REFUSE catégoriquement.
+- Tu PEUX donner des indices sur : sa nationalité, son époque, son domaine d'activité, ses réalisations majeures, son genre.
+- Sois un peu plus généreux en informations que d'habitude car la base est très large (2000+ personnalités mondiales).
+- Réponds par Oui/Non suivi d'une phrase informative (max 2 phrases). Ne sois pas trop cryptique.
+- Si la question est vague, guide le joueur vers une meilleure question.`;
+
+const SYSTEM_PROMPTS = {
+    historique: SYSTEM_PROMPT_HISTORIQUE,
+    football: SYSTEM_PROMPT_FOOTBALL,
+    basketball: SYSTEM_PROMPT_BASKETBALL,
+    tennis: SYSTEM_PROMPT_TENNIS,
+    rugby: SYSTEM_PROMPT_RUGBY,
+    f1: SYSTEM_PROMPT_F1,
+    cyclisme: SYSTEM_PROMPT_CYCLISME,
+    boxe: SYSTEM_PROMPT_BOXE,
+    mma: SYSTEM_PROMPT_MMA,
+    daily: SYSTEM_PROMPT_DAILY,
+};
 
 // API Routes
 app.post('/api/ask', async (req, res) => {
     try {
-        const { message, character, history } = req.body;
+        const { message, character, history, gameMode } = req.body;
+
+        const systemPrompt = SYSTEM_PROMPTS[gameMode] || SYSTEM_PROMPT_HISTORIQUE;
 
         // Build messages array in OpenAI format
         const messages = [
             {
                 role: "system",
-                content: `${SYSTEM_PROMPT}\n\nLe personnage secret est : ${character.name}. Description : ${character.description}. Ses tags sont : ${character.tags.join(', ')}.`
+                content: `${systemPrompt}\n\nLe personnage secret est : ${character.name}. Description : ${character.description}. Ses tags sont : ${character.tags.join(', ')}.`
             },
             {
                 role: "assistant",
-                content: "Compris. Je suis prêt à jouer. Je ne révélerai pas le nom. Pose ta question."
+                content: "Compris. Je ne révélerai jamais le nom. Pose ta question."
             },
             {
                 role: "user",
@@ -70,7 +118,8 @@ app.post('/api/ask', async (req, res) => {
         const completion = await client.chat.completions.create({
             model: MODEL,
             messages: messages,
-            max_tokens: 150,
+            max_tokens: 80,
+            temperature: 0,
         });
 
         const text = completion.choices[0].message.content;
@@ -91,13 +140,12 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'dist')));
+// Serve Frontend (production)
+app.use(express.static(path.join(__dirname, 'dist')));
 
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-    });
-}
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
