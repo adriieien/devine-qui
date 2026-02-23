@@ -6,6 +6,7 @@ import ChatMessage from './ChatMessage';
 import QuestionMenu from './QuestionMenu';
 import VictoryScreen from './VictoryScreen';
 import InfoPanel from './InfoPanel';
+import AdBanner from './AdBanner';
 import styles from './GameInterface.module.css';
 
 export default function GameInterface({ onExit, difficulty, mode, gameMode = 'historique', dailyCharacter }) {
@@ -347,21 +348,25 @@ export default function GameInterface({ onExit, difficulty, mode, gameMode = 'hi
                         <p className={styles.lostText}>Le personnage mystère était <strong>{engine.secretCharacter?.name}</strong>.</p>
                         <p className={styles.lostDescription}>{engine.secretCharacter?.description}</p>
                         <button onClick={handleRestartGame} className={styles.restartBtn}>🔄 Rejouer</button>
+                        <AdBanner format="auto" slot="" />
                     </div>
                 ) : null}
             </div>
 
             {gameStatus === 'won' && (
-                <VictoryScreen
-                    score={lastMsg.score}
-                    rank={lastMsg.rank}
-                    character={engine.secretCharacter}
-                    turnCount={engine.turnCount}
-                    totalQuestionsAsked={engine.totalQuestionsAsked}
-                    maxTurns={engine.maxTurns}
-                    hintsUsed={engine.hintsUsed}
-                    onRestart={handleRestartGame}
-                />
+                <>
+                    <VictoryScreen
+                        score={lastMsg.score}
+                        rank={lastMsg.rank}
+                        character={engine.secretCharacter}
+                        turnCount={engine.turnCount}
+                        totalQuestionsAsked={engine.totalQuestionsAsked}
+                        maxTurns={engine.maxTurns}
+                        hintsUsed={engine.hintsUsed}
+                        onRestart={handleRestartGame}
+                    />
+                    <AdBanner format="auto" slot="" />
+                </>
             )}
         </div>
     );

@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './HomeScreen.module.css';
+import AdBanner from './AdBanner';
 
 const MODES = [
     {
@@ -107,6 +108,8 @@ export default function HomeScreen({ onSelectMode, onDailyClick, dailyPlayed }) 
                     </button>
                 ))}
             </div>
+
+            <AdBanner format="auto" slot="" />
         </div>
     );
 }
