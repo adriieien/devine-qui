@@ -266,19 +266,8 @@ export default function GameInterface({ onExit, difficulty, mode, gameMode = 'hi
     };
 
     const handleRestartGame = () => {
-        setUsedQuestions([]);
-        setFacts([]);
-        setGameStatus('playing');
-        setElapsed(0);
-        const intro = engine.startNewGame({ difficulty, mode, gameMode });
-        const rulesMsg = buildRulesMsg(engine);
-        setMessages([rulesMsg, intro]);
-
-        // Restart timer
-        clearInterval(timerRef.current);
-        timerRef.current = setInterval(() => {
-            setElapsed(engine.getElapsedSeconds());
-        }, 1000);
+        // Return to home screen to avoid layout bugs on in-place restart
+        onExit();
     };
 
     const formatTimer = (secs) => {
