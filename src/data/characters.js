@@ -1,147 +1,314 @@
 export const characters = [
-    // === POLITIQUE & ROYAUTÉ ===
+    // === MUSIQUE & POP CULTURE ===
+    {
+        id: 'michael_jackson',
+        name: 'Michael Jackson',
+        gender: 'm',
+        tags: ['musique', 'pop', 'usa', '20e', 'danse', 'artiste'],
+        description: "Le Roi de la Pop, artiste le plus vendu de l'histoire, créateur du moonwalk."
+    },
+    {
+        id: 'elvis_presley',
+        name: 'Elvis Presley',
+        gender: 'm',
+        tags: ['musique', 'rock', 'usa', '20e', 'artiste'],
+        description: "Le King du Rock'n'Roll, icône musicale américaine des années 50-70."
+    },
+    {
+        id: 'bob_marley',
+        name: 'Bob Marley',
+        gender: 'm',
+        tags: ['musique', 'reggae', 'jamaïque', '20e', 'artiste', 'paix'],
+        description: "Légende du reggae, symbole de paix et ambassadeur de la culture jamaïcaine."
+    },
+    {
+        id: 'freddie_mercury',
+        name: 'Freddie Mercury',
+        gender: 'm',
+        tags: ['musique', 'rock', 'uk', '20e', 'artiste'],
+        description: "Chanteur de Queen, voix légendaire connue pour Bohemian Rhapsody."
+    },
+    {
+        id: 'john_lennon',
+        name: 'John Lennon',
+        gender: 'm',
+        tags: ['musique', 'rock', 'uk', '20e', 'artiste', 'paix'],
+        description: "Cofondateur des Beatles, militant pour la paix, auteur de Imagine."
+    },
+    {
+        id: 'madonna',
+        name: 'Madonna',
+        gender: 'f',
+        tags: ['musique', 'pop', 'usa', '20e', 'artiste'],
+        description: "Reine de la Pop, artiste féminine la plus vendue de tous les temps."
+    },
+    {
+        id: 'edith_piaf',
+        name: 'Édith Piaf',
+        gender: 'f',
+        tags: ['musique', 'chanson', 'france', '20e', 'artiste'],
+        description: "La Môme, voix inoubliable de La Vie en rose et Non, je ne regrette rien."
+    },
+    {
+        id: 'tupac',
+        name: 'Tupac Shakur',
+        gender: 'm',
+        tags: ['musique', 'rap', 'usa', '20e', 'artiste'],
+        description: "Rappeur légendaire et poète, figure emblématique du hip-hop des années 90."
+    },
+    {
+        id: 'beethoven',
+        name: 'Ludwig van Beethoven',
+        gender: 'm',
+        tags: ['musique', 'classique', 'allemagne', '19e', 'compositeur'],
+        description: "Compositeur devenu sourd, auteur de la 9e Symphonie et de la Lettre à Élise."
+    },
+    {
+        id: 'mozart',
+        name: 'Wolfgang Amadeus Mozart',
+        gender: 'm',
+        tags: ['musique', 'classique', 'autriche', '18e', 'compositeur'],
+        description: "Enfant prodige et génie musical, compositeur de plus de 600 œuvres."
+    },
+
+    // === CINÉMA & SPECTACLE ===
+    {
+        id: 'marilyn_monroe',
+        name: 'Marilyn Monroe',
+        gender: 'f',
+        tags: ['cinema', 'usa', '20e', 'actrice', 'icône'],
+        description: "Icône de Hollywood et sex-symbol des années 50, star de Certains l'aiment chaud."
+    },
+    {
+        id: 'charlie_chaplin',
+        name: 'Charlie Chaplin',
+        gender: 'm',
+        tags: ['cinema', 'uk', '20e', 'acteur', 'réalisateur', 'comedie'],
+        description: "Créateur de Charlot, génie du cinéma muet et du burlesque."
+    },
+    {
+        id: 'bruce_lee',
+        name: 'Bruce Lee',
+        gender: 'm',
+        tags: ['cinema', 'arts-martiaux', 'usa', 'chine', '20e', 'acteur'],
+        description: "Maître des arts martiaux et acteur, il a révolutionné le film de kung-fu."
+    },
+    {
+        id: 'walt_disney',
+        name: 'Walt Disney',
+        gender: 'm',
+        tags: ['cinema', 'usa', '20e', 'animation', 'entrepreneur'],
+        description: "Créateur de Mickey Mouse et fondateur de l'empire Disney."
+    },
+    {
+        id: 'louis_de_funes',
+        name: 'Louis de Funès',
+        gender: 'm',
+        tags: ['cinema', 'france', '20e', 'acteur', 'comedie'],
+        description: "Roi de la comédie française, inoubliable dans Le Gendarme et La Grande Vadrouille."
+    },
+    {
+        id: 'alain_delon',
+        name: 'Alain Delon',
+        gender: 'm',
+        tags: ['cinema', 'france', '20e', 'acteur'],
+        description: "Légende du cinéma français, icône de beauté masculine internationale."
+    },
+
+    // === SPORT ===
+    {
+        id: 'muhammad_ali',
+        name: 'Muhammad Ali',
+        gender: 'm',
+        tags: ['sport', 'boxe', 'usa', '20e', 'militant'],
+        description: "The Greatest, champion du monde de boxe et militant pour les droits civiques."
+    },
+    {
+        id: 'pele',
+        name: 'Pelé',
+        gender: 'm',
+        tags: ['sport', 'football', 'brésil', '20e'],
+        description: "Le Roi Pelé, seul joueur triple champion du monde de football."
+    },
+    {
+        id: 'michael_jordan',
+        name: 'Michael Jordan',
+        gender: 'm',
+        tags: ['sport', 'basketball', 'usa', '20e'],
+        description: "His Airness, considéré comme le plus grand basketteur de tous les temps."
+    },
+    {
+        id: 'zinedine_zidane',
+        name: 'Zinedine Zidane',
+        gender: 'm',
+        tags: ['sport', 'football', 'france', '20e'],
+        description: "Footballeur légendaire, héros de la Coupe du monde 1998 avec la France."
+    },
+    {
+        id: 'usain_bolt',
+        name: 'Usain Bolt',
+        gender: 'm',
+        tags: ['sport', 'athlétisme', 'jamaïque', '21e'],
+        description: "L'homme le plus rapide de l'histoire, recordman du 100m et 200m."
+    },
+    {
+        id: 'serena_williams',
+        name: 'Serena Williams',
+        gender: 'f',
+        tags: ['sport', 'tennis', 'usa', '21e'],
+        description: "23 titres du Grand Chelem, considérée comme la plus grande joueuse de tennis."
+    },
+    {
+        id: 'maradona',
+        name: 'Diego Maradona',
+        gender: 'm',
+        tags: ['sport', 'football', 'argentine', '20e'],
+        description: "El Pibe de Oro, auteur du But du siècle et de la Main de Dieu."
+    },
+
+    // === SCIENCE & INVENTEURS ===
+    {
+        id: 'albert_einstein',
+        name: 'Albert Einstein',
+        gender: 'm',
+        tags: ['science', 'physique', 'allemagne', '20e', 'nobel', 'génie'],
+        description: "Père de la relativité, l'un des plus grands génies de l'histoire. E=mc²."
+    },
+    {
+        id: 'marie_curie',
+        name: 'Marie Curie',
+        gender: 'f',
+        tags: ['science', 'chimie', 'pologne', 'france', '20e', 'nobel'],
+        description: "Pionnière de la radioactivité, première femme doublement Prix Nobel."
+    },
+    {
+        id: 'nikola_tesla',
+        name: 'Nikola Tesla',
+        gender: 'm',
+        tags: ['science', 'inventeur', 'serbie', 'usa', '20e', 'electricité'],
+        description: "Inventeur du courant alternatif, visionnaire de l'énergie moderne."
+    },
+    {
+        id: 'thomas_edison',
+        name: 'Thomas Edison',
+        gender: 'm',
+        tags: ['science', 'inventeur', 'usa', '19e', 'electricité'],
+        description: "Inventeur de l'ampoule et du phonographe, symbole de l'ingéniosité américaine."
+    },
+    {
+        id: 'leonard_de_vinci',
+        name: 'Léonard de Vinci',
+        gender: 'm',
+        tags: ['science', 'art', 'peinture', 'italie', 'renaissance', 'inventeur', 'génie'],
+        description: "Génie universel : peintre de La Joconde, inventeur, anatomiste, ingénieur."
+    },
+    {
+        id: 'louis_pasteur',
+        name: 'Louis Pasteur',
+        gender: 'm',
+        tags: ['science', 'france', '19e', 'medecine', 'vaccin'],
+        description: "Inventeur de la pasteurisation et du vaccin contre la rage."
+    },
+    {
+        id: 'charles_darwin',
+        name: 'Charles Darwin',
+        gender: 'm',
+        tags: ['science', 'biologie', 'uk', '19e', 'evolution'],
+        description: "Père de la théorie de l'évolution par sélection naturelle."
+    },
+    {
+        id: 'isaac_newton',
+        name: 'Isaac Newton',
+        gender: 'm',
+        tags: ['science', 'physique', 'mathematiques', 'uk', '17e'],
+        description: "Découvreur de la gravitation universelle et des lois du mouvement."
+    },
+    {
+        id: 'stephen_hawking',
+        name: 'Stephen Hawking',
+        gender: 'm',
+        tags: ['science', 'physique', 'uk', '21e', 'astrophysique'],
+        description: "Génie de l'astrophysique, auteur d'Une brève histoire du temps, malgré la maladie."
+    },
+    {
+        id: 'galilee',
+        name: 'Galilée',
+        gender: 'm',
+        tags: ['science', 'astronomie', 'italie', 'renaissance', 'physique'],
+        description: "Père de l'astronomie moderne, persécuté pour avoir défendu l'héliocentrisme."
+    },
+
+    // === POLITIQUE & LEADERS ===
     {
         id: 'napoleon',
         name: 'Napoléon Bonaparte',
         gender: 'm',
-        tags: ['politique', 'militaire', 'france', '19e', 'empereur', 'europe', 'guerre'],
+        tags: ['politique', 'militaire', 'france', '19e', 'empereur', 'guerre'],
         description: "Empereur des Français, conquérant de l'Europe et réformateur du droit civil."
     },
     {
-        id: 'louis_xiv',
-        name: 'Louis XIV',
+        id: 'martin_luther_king',
+        name: 'Martin Luther King Jr.',
         gender: 'm',
-        tags: ['politique', 'royauté', 'france', '17e', 'roi', 'guerre', 'chateau', 'versailles'],
-        description: "Le Roi-Soleil, monarque absolu qui a régné 72 ans et bâti Versailles."
+        tags: ['politique', 'usa', '20e', 'droits-civiques', 'paix', 'nobel'],
+        description: "Leader du mouvement des droits civiques, célèbre pour son discours I Have a Dream."
+    },
+    {
+        id: 'nelson_mandela',
+        name: 'Nelson Mandela',
+        gender: 'm',
+        tags: ['politique', 'afrique-du-sud', '20e', 'paix', 'nobel', 'prison'],
+        description: "Premier président noir d'Afrique du Sud après 27 ans de prison, symbole de la liberté."
+    },
+    {
+        id: 'gandhi',
+        name: 'Mahatma Gandhi',
+        gender: 'm',
+        tags: ['politique', 'inde', '20e', 'paix', 'non-violence'],
+        description: "Leader de l'indépendance de l'Inde par la non-violence, surnommé le Mahatma."
+    },
+    {
+        id: 'cleopatre',
+        name: 'Cléopâtre',
+        gender: 'f',
+        tags: ['politique', 'egypte', 'antiquité', 'reine'],
+        description: "Dernière reine d'Égypte, célèbre pour sa beauté et ses alliances avec César et Marc Antoine."
+    },
+    {
+        id: 'jules_cesar',
+        name: 'Jules César',
+        gender: 'm',
+        tags: ['politique', 'militaire', 'rome', 'antiquité', 'empereur'],
+        description: "Général et dictateur romain, conquérant de la Gaule, assassiné au Sénat."
+    },
+    {
+        id: 'abraham_lincoln',
+        name: 'Abraham Lincoln',
+        gender: 'm',
+        tags: ['politique', 'usa', '19e', 'président', 'liberté'],
+        description: "16e président des USA, il abolit l'esclavage et fut assassiné au théâtre."
     },
     {
         id: 'de_gaulle',
         name: 'Charles de Gaulle',
         gender: 'm',
-        tags: ['politique', 'militaire', 'france', '20e', 'president', 'guerre', 'resistant'],
+        tags: ['politique', 'militaire', 'france', '20e', 'président', 'résistance'],
         description: "Chef de la France Libre et fondateur de la Ve République."
     },
     {
-        id: 'louis_xvi',
-        name: 'Louis XVI',
-        gender: 'm',
-        tags: ['politique', 'royauté', 'france', '18e', 'roi', 'revolution'],
-        description: "Dernier roi de l'Ancien Régime, guillotiné pendant la Révolution française."
-    },
-    {
-        id: 'marie_antoinette',
-        name: 'Marie-Antoinette',
+        id: 'reine_elizabeth',
+        name: 'Élisabeth II',
         gender: 'f',
-        tags: ['politique', 'royauté', 'france', '18e', 'reine', 'revolution', 'autriche'],
-        description: "Reine de France d'origine autrichienne, exécutée en 1793."
+        tags: ['politique', 'royauté', 'uk', '20e', 'reine'],
+        description: "Reine du Royaume-Uni pendant 70 ans, la plus longue monarche britannique."
     },
     {
-        id: 'charlemagne',
-        name: 'Charlemagne',
+        id: 'winston_churchill',
+        name: 'Winston Churchill',
         gender: 'm',
-        tags: ['politique', 'royauté', 'france', 'moyen-age', 'empereur', 'europe', 'education'],
-        description: "Empereur d'Occident, père de l'Europe et promoteur de l'éducation."
+        tags: ['politique', 'uk', '20e', 'guerre', 'premier-ministre'],
+        description: "Premier ministre britannique pendant la Seconde Guerre mondiale, orateur légendaire."
     },
-    {
-        id: 'francois_1er',
-        name: 'François Ier',
-        gender: 'm',
-        tags: ['politique', 'royauté', 'france', 'renaissance', 'roi', 'art', 'chateau'],
-        description: "Roi de la Renaissance, protecteur des arts et bâtisseur de Chambord."
-    },
-    {
-        id: 'henri_iv',
-        name: 'Henri IV',
-        gender: 'm',
-        tags: ['politique', 'royauté', 'france', '16e', 'roi', 'religion', 'paix'],
-        description: "Le Bon Roi Henri, auteur de l'Édit de Nantes pour la tolérance religieuse."
-    },
-    {
-        id: 'louis_ix',
-        name: 'Saint Louis (Louis IX)',
-        gender: 'm',
-        tags: ['politique', 'royauté', 'france', 'moyen-age', 'roi', 'religion', 'croisade'],
-        description: "Roi très pieux, il rendit la justice sous un chêne et mena deux croisades."
-    },
-    {
-        id: 'clovis',
-        name: 'Clovis',
-        gender: 'm',
-        tags: ['politique', 'royauté', 'france', 'moyen-age', 'roi', 'religion'],
-        description: "Premier roi des Francs baptisé chrétien, fondateur du royaume de France."
-    },
-    {
-        id: 'richelieu',
-        name: 'Cardinal de Richelieu',
-        gender: 'm',
-        tags: ['politique', 'religion', 'france', '17e', 'cardinal', 'pouvoir'],
-        description: "Principal ministre de Louis XIII, architecte de l'absolutisme français."
-    },
-    {
-        id: 'napoleon_iii',
-        name: 'Napoléon III',
-        gender: 'm',
-        tags: ['politique', 'france', '19e', 'empereur', 'modernisation'],
-        description: "Dernier monarque français, modernisateur de Paris avec Haussmann."
-    },
-    {
-        id: 'mitterrand',
-        name: 'François Mitterrand',
-        gender: 'm',
-        tags: ['politique', 'france', '20e', 'president', 'socialisme'],
-        description: "Premier président socialiste de la Ve République, élu deux fois."
-    },
-    {
-        id: 'clemenceau',
-        name: 'Georges Clemenceau',
-        gender: 'm',
-        tags: ['politique', 'france', '20e', 'president', 'guerre', 'presse'],
-        description: "Le Tigre, artisan de la victoire en 1918 et défenseur de Dreyfus."
-    },
-    {
-        id: 'robespierre',
-        name: 'Maximilien de Robespierre',
-        gender: 'm',
-        tags: ['politique', 'france', '18e', 'revolution', 'terreur'],
-        description: "L'Incorruptible, figure majeure de la Terreur révolutionnaire."
-    },
-    {
-        id: 'danton',
-        name: 'Georges Danton',
-        gender: 'm',
-        tags: ['politique', 'france', '18e', 'revolution', 'orateur'],
-        description: "Tribun de la Révolution, connu pour son éloquence foudroyante."
-    },
-    {
-        id: 'marat',
-        name: 'Jean-Paul Marat',
-        gender: 'm',
-        tags: ['politique', 'france', '18e', 'revolution', 'presse'],
-        description: "Journaliste radical de la Révolution, assassiné dans sa baignoire par Charlotte Corday."
-    },
-    {
-        id: 'charlotte_corday',
-        name: 'Charlotte Corday',
-        gender: 'f',
-        tags: ['politique', 'france', '18e', 'revolution'],
-        description: "Jeune femme qui assassina Marat pour mettre fin à la Terreur."
-    },
-    {
-        id: 'pompidou',
-        name: 'Georges Pompidou',
-        gender: 'm',
-        tags: ['politique', 'france', '20e', 'president', 'art', 'modernisation'],
-        description: "Président modernisateur, son nom est associé au centre d'art parisien."
-    },
-    {
-        id: 'chirac',
-        name: 'Jacques Chirac',
-        gender: 'm',
-        tags: ['politique', 'france', '20e', 'president'],
-        description: "Président de la République pendant 12 ans, connu pour son franc-parler."
-    },
-
-    // === MILITAIRE ===
     {
         id: 'jeanne_darc',
         name: "Jeanne d'Arc",
@@ -150,347 +317,93 @@ export const characters = [
         description: "Héroïne de la Guerre de Cent Ans, brûlée vive puis canonisée."
     },
     {
-        id: 'vercingetorix',
-        name: 'Vercingétorix',
+        id: 'che_guevara',
+        name: 'Che Guevara',
         gender: 'm',
-        tags: ['militaire', 'france', 'antiquité', 'gaulois', 'guerre'],
-        description: "Chef gaulois qui résista à Jules César avant de se rendre à Alésia."
-    },
-    {
-        id: 'bayard',
-        name: 'Chevalier Bayard',
-        gender: 'm',
-        tags: ['militaire', 'france', 'renaissance', 'chevalier', 'guerre'],
-        description: "Le chevalier sans peur et sans reproche, héros des guerres d'Italie."
-    },
-    {
-        id: 'jean_moulin',
-        name: 'Jean Moulin',
-        gender: 'm',
-        tags: ['militaire', 'politique', 'france', '20e', 'resistant', 'guerre'],
-        description: "Figure emblématique de la Résistance, unificateur des mouvements clandestins."
-    },
-    {
-        id: 'leclerc',
-        name: 'Général Leclerc',
-        gender: 'm',
-        tags: ['militaire', 'france', '20e', 'guerre', 'liberation'],
-        description: "Héros de la France Libre, il libéra Paris en août 1944."
-    },
-    {
-        id: 'lafayette',
-        name: 'Marquis de La Fayette',
-        gender: 'm',
-        tags: ['militaire', 'politique', 'france', '18e', 'revolution', 'usa'],
-        description: "Héros des deux mondes, combattant de la liberté en Amérique et en France."
-    },
-    {
-        id: 'turenne',
-        name: 'Turenne',
-        gender: 'm',
-        tags: ['militaire', 'france', '17e', 'guerre', 'marechal'],
-        description: "L'un des plus grands stratèges militaires de Louis XIV."
+        tags: ['politique', 'militaire', 'argentine', 'cuba', '20e', 'revolution'],
+        description: "Révolutionnaire argentin, figure emblématique de la guérilla cubaine."
     },
 
-    // === SCIENCE ===
-    {
-        id: 'marie_curie',
-        name: 'Marie Curie',
-        gender: 'f',
-        tags: ['science', 'chimie', 'physique', 'pologne', 'france', '20e', 'nobel'],
-        description: "Pionnière de la radioactivité, première femme doublement Prix Nobel."
-    },
-    {
-        id: 'pasteur',
-        name: 'Louis Pasteur',
-        gender: 'm',
-        tags: ['science', 'france', '19e', 'medecine', 'vaccin', 'chimie'],
-        description: "Inventeur de la pasteurisation et du vaccin contre la rage."
-    },
-    {
-        id: 'lavoisier',
-        name: 'Antoine Lavoisier',
-        gender: 'm',
-        tags: ['science', 'chimie', 'france', '18e', 'revolution'],
-        description: "Père de la chimie moderne, guillotiné pendant la Révolution."
-    },
-    {
-        id: 'descartes',
-        name: 'René Descartes',
-        gender: 'm',
-        tags: ['science', 'philosophie', 'france', '17e', 'mathematiques'],
-        description: "Philosophe et mathématicien : 'Je pense, donc je suis.'"
-    },
-    {
-        id: 'pascal',
-        name: 'Blaise Pascal',
-        gender: 'm',
-        tags: ['science', 'philosophie', 'france', '17e', 'mathematiques', 'religion'],
-        description: "Inventeur de la machine à calculer et auteur des Pensées."
-    },
-    {
-        id: 'ampere',
-        name: 'André-Marie Ampère',
-        gender: 'm',
-        tags: ['science', 'physique', 'france', '19e', 'electricite'],
-        description: "Fondateur de l'électrodynamique, son nom est devenu l'unité du courant électrique."
-    },
-    {
-        id: 'lumiere_freres',
-        name: 'Frères Lumière',
-        gender: 'm',
-        tags: ['science', 'france', '19e', 'cinema', 'inventeur'],
-        description: "Inventeurs du cinématographe, pionniers du 7e art."
-    },
-    {
-        id: 'cuvier',
-        name: 'Georges Cuvier',
-        gender: 'm',
-        tags: ['science', 'france', '19e', 'biologie', 'paleontologie'],
-        description: "Fondateur de la paléontologie et de l'anatomie comparée."
-    },
-    {
-        id: 'buffon',
-        name: 'Georges-Louis Leclerc de Buffon',
-        gender: 'm',
-        tags: ['science', 'france', '18e', 'biologie', 'naturaliste'],
-        description: "Naturaliste auteur de l'Histoire naturelle, encyclopédie du vivant."
-    },
-    {
-        id: 'pierre_curie',
-        name: 'Pierre Curie',
-        gender: 'm',
-        tags: ['science', 'physique', 'france', '20e', 'nobel', 'radioactivite'],
-        description: "Physicien, co-découvreur de la radioactivité avec Marie Curie."
-    },
-    {
-        id: 'fermat',
-        name: 'Pierre de Fermat',
-        gender: 'm',
-        tags: ['science', 'france', '17e', 'mathematiques'],
-        description: "Mathématicien célèbre pour son 'dernier théorème' resté non prouvé pendant 358 ans."
-    },
-    {
-        id: 'laplace',
-        name: 'Pierre-Simon de Laplace',
-        gender: 'm',
-        tags: ['science', 'france', '18e', 'mathematiques', 'astronomie'],
-        description: "Mathématicien et astronome, surnommé le Newton français."
-    },
-    {
-        id: 'eiffel',
-        name: 'Gustave Eiffel',
-        gender: 'm',
-        tags: ['science', 'france', '19e', 'inventeur', 'ingenieur', 'architecture'],
-        description: "Ingénieur qui a conçu la tour Eiffel pour l'Exposition universelle de 1889."
-    },
-
-    // === LITTÉRATURE ===
+    // === LITTÉRATURE & PHILOSOPHIE ===
     {
         id: 'victor_hugo',
         name: 'Victor Hugo',
         gender: 'm',
-        tags: ['art', 'littérature', 'france', '19e', 'ecrivain', 'politique', 'poete'],
+        tags: ['littérature', 'france', '19e', 'ecrivain', 'poète'],
         description: "Auteur des Misérables et de Notre-Dame de Paris, géant du romantisme."
+    },
+    {
+        id: 'william_shakespeare',
+        name: 'William Shakespeare',
+        gender: 'm',
+        tags: ['littérature', 'théâtre', 'uk', 'renaissance', 'ecrivain'],
+        description: "Plus grand dramaturge de l'histoire, auteur de Roméo et Juliette et Hamlet."
     },
     {
         id: 'moliere',
         name: 'Molière',
         gender: 'm',
-        tags: ['art', 'théâtre', 'france', '17e', 'ecrivain', 'comedien'],
+        tags: ['littérature', 'théâtre', 'france', '17e', 'ecrivain', 'comedien'],
         description: "Dramaturge et comédien, auteur du Tartuffe et du Malade imaginaire."
     },
     {
         id: 'voltaire',
         name: 'Voltaire',
         gender: 'm',
-        tags: ['art', 'littérature', 'philosophie', 'france', '18e', 'ecrivain', 'lumieres'],
+        tags: ['littérature', 'philosophie', 'france', '18e', 'ecrivain', 'lumières'],
         description: "Philosophe des Lumières, défenseur de la tolérance et auteur de Candide."
-    },
-    {
-        id: 'rousseau',
-        name: 'Jean-Jacques Rousseau',
-        gender: 'm',
-        tags: ['art', 'littérature', 'philosophie', 'france', '18e', 'ecrivain', 'lumieres'],
-        description: "Philosophe du Contrat social, précurseur du romantisme et de la démocratie."
-    },
-    {
-        id: 'dumas',
-        name: 'Alexandre Dumas',
-        gender: 'm',
-        tags: ['art', 'littérature', 'france', '19e', 'ecrivain', 'roman'],
-        description: "Auteur des Trois Mousquetaires et du Comte de Monte-Cristo."
-    },
-    {
-        id: 'zola',
-        name: 'Émile Zola',
-        gender: 'm',
-        tags: ['art', 'littérature', 'france', '19e', 'ecrivain', 'politique'],
-        description: "Chef de file du naturalisme, auteur de Germinal et du J'accuse pour Dreyfus."
-    },
-    {
-        id: 'balzac',
-        name: 'Honoré de Balzac',
-        gender: 'm',
-        tags: ['art', 'littérature', 'france', '19e', 'ecrivain', 'roman'],
-        description: "Auteur de La Comédie humaine, fresque monumentale de la société française."
-    },
-    {
-        id: 'flaubert',
-        name: 'Gustave Flaubert',
-        gender: 'm',
-        tags: ['art', 'littérature', 'france', '19e', 'ecrivain', 'roman'],
-        description: "Auteur de Madame Bovary, maître du réalisme littéraire."
-    },
-    {
-        id: 'baudelaire',
-        name: 'Charles Baudelaire',
-        gender: 'm',
-        tags: ['art', 'littérature', 'france', '19e', 'poete'],
-        description: "Poète maudit, auteur des Fleurs du mal, précurseur du symbolisme."
-    },
-    {
-        id: 'rimbaud',
-        name: 'Arthur Rimbaud',
-        gender: 'm',
-        tags: ['art', 'littérature', 'france', '19e', 'poete'],
-        description: "Poète prodige qui révolutionna la poésie avant d'abandonner l'écriture à 21 ans."
-    },
-    {
-        id: 'verlaine',
-        name: 'Paul Verlaine',
-        gender: 'm',
-        tags: ['art', 'littérature', 'france', '19e', 'poete'],
-        description: "Poète symboliste, amant de Rimbaud, auteur de Romances sans paroles."
     },
     {
         id: 'saint_exupery',
         name: 'Antoine de Saint-Exupéry',
         gender: 'm',
-        tags: ['art', 'littérature', 'france', '20e', 'ecrivain', 'aviateur'],
+        tags: ['littérature', 'france', '20e', 'ecrivain', 'aviateur'],
         description: "Aviateur et auteur du Petit Prince, disparu en vol en 1944."
     },
     {
-        id: 'proust',
-        name: 'Marcel Proust',
-        gender: 'm',
-        tags: ['art', 'littérature', 'france', '20e', 'ecrivain', 'roman'],
-        description: "Auteur d'À la recherche du temps perdu, chef-d'œuvre de la littérature mondiale."
-    },
-    {
-        id: 'camus',
-        name: 'Albert Camus',
-        gender: 'm',
-        tags: ['art', 'littérature', 'philosophie', 'france', '20e', 'ecrivain', 'nobel'],
-        description: "Auteur de L'Étranger et La Peste, Prix Nobel de littérature en 1957."
-    },
-    {
-        id: 'sartre',
-        name: 'Jean-Paul Sartre',
-        gender: 'm',
-        tags: ['art', 'littérature', 'philosophie', 'france', '20e', 'ecrivain'],
-        description: "Philosophe existentialiste, refusa le Prix Nobel de littérature."
-    },
-    {
-        id: 'beauvoir',
-        name: 'Simone de Beauvoir',
+        id: 'anne_frank',
+        name: 'Anne Frank',
         gender: 'f',
-        tags: ['art', 'littérature', 'philosophie', 'france', '20e', 'ecrivain', 'feminisme'],
-        description: "Philosophe féministe, auteur du Deuxième Sexe, compagne de Sartre."
-    },
-    {
-        id: 'george_sand',
-        name: 'George Sand',
-        gender: 'f',
-        tags: ['art', 'littérature', 'france', '19e', 'ecrivain', 'feminisme'],
-        description: "Romancière qui bouscula les conventions en portant un nom d'homme."
-    },
-    {
-        id: 'la_fontaine',
-        name: 'Jean de La Fontaine',
-        gender: 'm',
-        tags: ['art', 'littérature', 'france', '17e', 'ecrivain', 'poete', 'fables'],
-        description: "Fabuliste immortel : Le Corbeau et le Renard, La Cigale et la Fourmi."
-    },
-    {
-        id: 'racine',
-        name: 'Jean Racine',
-        gender: 'm',
-        tags: ['art', 'théâtre', 'france', '17e', 'ecrivain', 'tragedie'],
-        description: "Maître de la tragédie classique, auteur de Phèdre et Andromaque."
-    },
-    {
-        id: 'corneille',
-        name: 'Pierre Corneille',
-        gender: 'm',
-        tags: ['art', 'théâtre', 'france', '17e', 'ecrivain', 'tragedie'],
-        description: "Père de la tragédie classique française, auteur du Cid."
-    },
-    {
-        id: 'montaigne',
-        name: 'Michel de Montaigne',
-        gender: 'm',
-        tags: ['art', 'littérature', 'philosophie', 'france', 'renaissance', 'ecrivain'],
-        description: "Humaniste de la Renaissance, inventeur de l'essai littéraire."
-    },
-    {
-        id: 'rabelais',
-        name: 'François Rabelais',
-        gender: 'm',
-        tags: ['art', 'littérature', 'france', 'renaissance', 'ecrivain', 'medecine'],
-        description: "Auteur de Gargantua et Pantagruel, génie du rire et de la satire."
-    },
-    {
-        id: 'stendhal',
-        name: 'Stendhal',
-        gender: 'm',
-        tags: ['art', 'littérature', 'france', '19e', 'ecrivain', 'roman'],
-        description: "Auteur du Rouge et le Noir, maître du roman psychologique."
-    },
-    {
-        id: 'maupassant',
-        name: 'Guy de Maupassant',
-        gender: 'm',
-        tags: ['art', 'littérature', 'france', '19e', 'ecrivain', 'nouvelles'],
-        description: "Maître de la nouvelle réaliste, auteur de Boule de Suif et Bel-Ami."
-    },
-    {
-        id: 'colette',
-        name: 'Colette',
-        gender: 'f',
-        tags: ['art', 'littérature', 'france', '20e', 'ecrivain'],
-        description: "Romancière et artiste de music-hall, auteur de Gigi et de la série Claudine."
-    },
-    {
-        id: 'diderot',
-        name: 'Denis Diderot',
-        gender: 'm',
-        tags: ['art', 'littérature', 'philosophie', 'france', '18e', 'ecrivain', 'lumieres'],
-        description: "Co-fondateur de l'Encyclopédie avec d'Alembert, esprit universel des Lumières."
-    },
-    {
-        id: 'montesquieu',
-        name: 'Montesquieu',
-        gender: 'm',
-        tags: ['art', 'littérature', 'philosophie', 'france', '18e', 'ecrivain', 'lumieres', 'politique'],
-        description: "Philosophe des Lumières, théoricien de la séparation des pouvoirs."
-    },
-    {
-        id: 'verne',
-        name: 'Jules Verne',
-        gender: 'm',
-        tags: ['art', 'littérature', 'france', '19e', 'ecrivain', 'science'],
-        description: "Père de la science-fiction, auteur de Vingt Mille Lieues sous les mers."
-    },
-    {
-        id: 'marguerite_duras',
-        name: 'Marguerite Duras',
-        gender: 'f',
-        tags: ['art', 'littérature', 'france', '20e', 'ecrivain', 'cinema'],
-        description: "Romancière et cinéaste, auteur de L'Amant, prix Goncourt 1984."
+        tags: ['littérature', 'allemagne', 'pays-bas', '20e', 'guerre', 'shoah'],
+        description: "Adolescente juive dont le journal intime est devenu un symbole de la Shoah."
     },
 
-    // === ART (Peinture, Sculpture, Musique) ===
+    // === ART ===
+    {
+        id: 'picasso',
+        name: 'Pablo Picasso',
+        gender: 'm',
+        tags: ['art', 'peinture', 'espagne', 'france', '20e', 'cubisme'],
+        description: "Co-fondateur du cubisme, artiste le plus influent du XXe siècle."
+    },
+    {
+        id: 'van_gogh',
+        name: 'Vincent van Gogh',
+        gender: 'm',
+        tags: ['art', 'peinture', 'pays-bas', '19e', 'postimpressionisme'],
+        description: "Peintre maudit de la Nuit étoilée, il ne vendit qu'un seul tableau de son vivant."
+    },
+    {
+        id: 'michel_ange',
+        name: 'Michel-Ange',
+        gender: 'm',
+        tags: ['art', 'peinture', 'sculpture', 'italie', 'renaissance'],
+        description: "Sculpteur du David et peintre du plafond de la Chapelle Sixtine."
+    },
+    {
+        id: 'frida_kahlo',
+        name: 'Frida Kahlo',
+        gender: 'f',
+        tags: ['art', 'peinture', 'mexique', '20e', 'féminisme'],
+        description: "Peintre mexicaine connue pour ses autoportraits et son engagement féministe."
+    },
+    {
+        id: 'salvador_dali',
+        name: 'Salvador Dalí',
+        gender: 'm',
+        tags: ['art', 'peinture', 'espagne', '20e', 'surréalisme'],
+        description: "Maître du surréalisme, célèbre pour ses montres molles et sa moustache."
+    },
     {
         id: 'monet',
         name: 'Claude Monet',
@@ -498,186 +411,74 @@ export const characters = [
         tags: ['art', 'peinture', 'france', '19e', 'impressionnisme'],
         description: "Père de l'impressionnisme, célèbre pour ses Nymphéas et Impression, soleil levant."
     },
-    {
-        id: 'renoir',
-        name: 'Auguste Renoir',
-        gender: 'm',
-        tags: ['art', 'peinture', 'france', '19e', 'impressionnisme'],
-        description: "Peintre impressionniste de la joie de vivre, du Bal du moulin de la Galette."
-    },
-    {
-        id: 'cezanne',
-        name: 'Paul Cézanne',
-        gender: 'm',
-        tags: ['art', 'peinture', 'france', '19e', 'postimpressionisme'],
-        description: "Précurseur du cubisme, peintre de la Montagne Sainte-Victoire."
-    },
-    {
-        id: 'degas',
-        name: 'Edgar Degas',
-        gender: 'm',
-        tags: ['art', 'peinture', 'france', '19e', 'impressionnisme', 'danse'],
-        description: "Peintre et sculpteur impressionniste, célèbre pour ses danseuses."
-    },
-    {
-        id: 'delacroix',
-        name: 'Eugène Delacroix',
-        gender: 'm',
-        tags: ['art', 'peinture', 'france', '19e', 'romantisme'],
-        description: "Chef du romantisme pictural, auteur de La Liberté guidant le peuple."
-    },
-    {
-        id: 'rodin',
-        name: 'Auguste Rodin',
-        gender: 'm',
-        tags: ['art', 'sculpture', 'france', '19e', 'musee'],
-        description: "Plus grand sculpteur moderne, créateur du Penseur et du Baiser."
-    },
-    {
-        id: 'matisse',
-        name: 'Henri Matisse',
-        gender: 'm',
-        tags: ['art', 'peinture', 'france', '20e', 'fauvisme'],
-        description: "Chef de file du fauvisme, maître de la couleur pure."
-    },
-    {
-        id: 'toulouse_lautrec',
-        name: 'Henri de Toulouse-Lautrec',
-        gender: 'm',
-        tags: ['art', 'peinture', 'france', '19e', 'affiche', 'montmartre'],
-        description: "Peintre du Moulin Rouge et de la vie nocturne parisienne."
-    },
-    {
-        id: 'berlioz',
-        name: 'Hector Berlioz',
-        gender: 'm',
-        tags: ['art', 'musique', 'france', '19e', 'compositeur', 'romantisme'],
-        description: "Compositeur romantique, auteur de la Symphonie fantastique."
-    },
-    {
-        id: 'debussy',
-        name: 'Claude Debussy',
-        gender: 'm',
-        tags: ['art', 'musique', 'france', '20e', 'compositeur', 'impressionnisme'],
-        description: "Compositeur impressionniste, auteur de Clair de Lune et La Mer."
-    },
-    {
-        id: 'ravel',
-        name: 'Maurice Ravel',
-        gender: 'm',
-        tags: ['art', 'musique', 'france', '20e', 'compositeur'],
-        description: "Compositeur du célèbre Boléro, maître de l'orchestration."
-    },
-    {
-        id: 'bizet',
-        name: 'Georges Bizet',
-        gender: 'm',
-        tags: ['art', 'musique', 'france', '19e', 'compositeur', 'opera'],
-        description: "Compositeur de Carmen, l'un des opéras les plus joués au monde."
-    },
-    {
-        id: 'camille_claudel',
-        name: 'Camille Claudel',
-        gender: 'f',
-        tags: ['art', 'sculpture', 'france', '19e', 'feminisme'],
-        description: "Sculptrice de génie, élève et amante de Rodin, internée à tort."
-    },
 
-    // === PHILOSOPHIE & PENSEURS ===
+    // === AVENTURIERS & EXPLORATEURS ===
     {
-        id: 'simone_weil',
-        name: 'Simone Weil',
-        gender: 'f',
-        tags: ['philosophie', 'france', '20e', 'religion', 'politique'],
-        description: "Philosophe mystique et militante, morte d'épuisement par solidarité."
+        id: 'neil_armstrong',
+        name: 'Neil Armstrong',
+        gender: 'm',
+        tags: ['exploration', 'espace', 'usa', '20e', 'astronaute'],
+        description: "Premier homme à marcher sur la Lune le 20 juillet 1969."
     },
     {
-        id: 'foucault',
-        name: 'Michel Foucault',
+        id: 'marco_polo',
+        name: 'Marco Polo',
         gender: 'm',
-        tags: ['philosophie', 'france', '20e', 'ecrivain'],
-        description: "Philosophe qui a révolutionné l'analyse du pouvoir et des institutions."
+        tags: ['exploration', 'italie', 'moyen-age', 'voyage', 'chine'],
+        description: "Explorateur vénitien qui voyagea jusqu'en Chine et raconta ses aventures."
     },
     {
-        id: 'tocqueville',
-        name: 'Alexis de Tocqueville',
+        id: 'christophe_colomb',
+        name: 'Christophe Colomb',
         gender: 'm',
-        tags: ['philosophie', 'politique', 'france', '19e', 'ecrivain'],
-        description: "Penseur politique, auteur de De la démocratie en Amérique."
-    },
-
-    // === EXPLORATEURS & AVENTURIERS ===
-    {
-        id: 'cartier',
-        name: 'Jacques Cartier',
-        gender: 'm',
-        tags: ['exploration', 'france', 'renaissance', 'canada', 'navigateur'],
-        description: "Explorateur malouin qui découvrit le Canada au nom de François Ier."
-    },
-    {
-        id: 'champlain',
-        name: 'Samuel de Champlain',
-        gender: 'm',
-        tags: ['exploration', 'france', '17e', 'canada', 'navigateur'],
-        description: "Fondateur de Québec et père de la Nouvelle-France."
-    },
-    {
-        id: 'bougainville',
-        name: 'Louis Antoine de Bougainville',
-        gender: 'm',
-        tags: ['exploration', 'france', '18e', 'navigateur', 'science'],
-        description: "Navigateur qui fit le premier tour du monde français."
+        tags: ['exploration', 'italie', 'espagne', 'renaissance', 'navigateur'],
+        description: "Navigateur qui découvrit l'Amérique en 1492 en cherchant la route des Indes."
     },
     {
         id: 'cousteau',
         name: 'Jacques-Yves Cousteau',
         gender: 'm',
-        tags: ['exploration', 'science', 'france', '20e', 'ocean', 'cinema'],
+        tags: ['exploration', 'science', 'france', '20e', 'ocean'],
         description: "Commandant Cousteau, explorateur des océans et inventeur du scaphandre autonome."
+    },
+
+    // === FIGURES MODERNES & TECH ===
+    {
+        id: 'steve_jobs',
+        name: 'Steve Jobs',
+        gender: 'm',
+        tags: ['tech', 'usa', '21e', 'entrepreneur', 'apple'],
+        description: "Cofondateur d'Apple, visionnaire qui a révolutionné l'informatique et le smartphone."
+    },
+    {
+        id: 'elon_musk',
+        name: 'Elon Musk',
+        gender: 'm',
+        tags: ['tech', 'usa', '21e', 'entrepreneur', 'espace'],
+        description: "Fondateur de SpaceX et Tesla, entrepreneur controversé et homme le plus riche du monde."
     },
 
     // === FIGURES SOCIALES & HUMANITAIRES ===
     {
-        id: 'abbe_pierre',
-        name: "Abbé Pierre",
-        gender: 'm',
-        tags: ['religion', 'france', '20e', 'humanitaire', 'pauvrete'],
-        description: "Fondateur d'Emmaüs, défenseur des sans-abri et des plus démunis."
+        id: 'mere_teresa',
+        name: 'Mère Teresa',
+        gender: 'f',
+        tags: ['religion', 'inde', '20e', 'humanitaire', 'nobel', 'paix'],
+        description: "Religieuse qui consacra sa vie aux plus pauvres de Calcutta, Prix Nobel de la paix."
     },
     {
-        id: 'olympe_de_gouges',
-        name: 'Olympe de Gouges',
+        id: 'rosa_parks',
+        name: 'Rosa Parks',
         gender: 'f',
-        tags: ['politique', 'france', '18e', 'revolution', 'feminisme'],
-        description: "Pionnière du féminisme, auteur de la Déclaration des droits de la femme."
+        tags: ['politique', 'usa', '20e', 'droits-civiques'],
+        description: "Mère du mouvement des droits civiques, elle refusa de céder sa place dans le bus."
     },
     {
         id: 'simone_veil',
         name: 'Simone Veil',
         gender: 'f',
-        tags: ['politique', 'france', '20e', 'feminisme', 'loi', 'europe'],
+        tags: ['politique', 'france', '20e', 'féminisme', 'loi'],
         description: "Rescapée de la Shoah, elle fit légaliser l'IVG en France en 1975."
-    },
-    {
-        id: 'josephine_baker',
-        name: 'Joséphine Baker',
-        gender: 'f',
-        tags: ['art', 'france', '20e', 'musique', 'danse', 'resistant'],
-        description: "Artiste franco-américaine, résistante et militante antiraciste."
-    },
-    {
-        id: 'louise_michel',
-        name: 'Louise Michel',
-        gender: 'f',
-        tags: ['politique', 'france', '19e', 'revolution', 'anarchisme', 'commune'],
-        description: "La Vierge Rouge de la Commune de Paris, institutrice et militante."
-    },
-    {
-        id: 'edith_piaf',
-        name: 'Édith Piaf',
-        gender: 'f',
-        tags: ['art', 'musique', 'france', '20e', 'chanson'],
-        description: "La Môme, voix inoubliable de La Vie en rose et de Non, je ne regrette rien."
     },
     {
         id: 'coco_chanel',
@@ -686,148 +487,29 @@ export const characters = [
         tags: ['art', 'france', '20e', 'mode', 'luxe'],
         description: "Créatrice de mode révolutionnaire, fondatrice de la maison Chanel."
     },
+
+    // === RELIGION & SPIRITUALITÉ ===
     {
-        id: 'brigitte_bardot',
-        name: 'Brigitte Bardot',
-        gender: 'f',
-        tags: ['art', 'france', '20e', 'cinema', 'animaux'],
-        description: "Icône du cinéma français, devenue militante pour la cause animale."
-    },
-    {
-        id: 'catherine_deneuve',
-        name: 'Catherine Deneuve',
-        gender: 'f',
-        tags: ['art', 'france', '20e', 'cinema'],
-        description: "Grande actrice française, visage de Marianne et star internationale."
-    },
-    {
-        id: 'serge_gainsbourg',
-        name: 'Serge Gainsbourg',
+        id: 'bouddha',
+        name: 'Bouddha',
         gender: 'm',
-        tags: ['art', 'musique', 'france', '20e', 'chanson', 'poete'],
-        description: "Auteur-compositeur provocateur et poète, créateur de La Javanaise."
-    },
-    {
-        id: 'jean_gabin',
-        name: 'Jean Gabin',
-        gender: 'm',
-        tags: ['art', 'france', '20e', 'cinema'],
-        description: "Monstre sacré du cinéma français, star du film noir et du réalisme poétique."
-    },
-    {
-        id: 'louis_de_funes',
-        name: 'Louis de Funès',
-        gender: 'm',
-        tags: ['art', 'france', '20e', 'cinema', 'comedie'],
-        description: "Roi de la comédie française, inoubliable dans Le Gendarme et La Grande Vadrouille."
+        tags: ['religion', 'inde', 'antiquité', 'philosophie', 'paix'],
+        description: "Fondateur du bouddhisme, prince devenu sage, il enseigna le chemin vers l'éveil."
     },
 
-    // === RELIGIEUX ===
+    // === MÉCHANTS & FIGURES CONTROVERSÉES ===
     {
-        id: 'calvin',
-        name: 'Jean Calvin',
+        id: 'al_capone',
+        name: 'Al Capone',
         gender: 'm',
-        tags: ['religion', 'france', 'renaissance', 'protestantisme'],
-        description: "Réformateur protestant français, fondateur du calvinisme à Genève."
+        tags: ['usa', '20e', 'crime', 'mafia'],
+        description: "Gangster le plus célèbre de l'histoire, roi de la mafia à Chicago."
     },
     {
-        id: 'saint_bernard',
-        name: 'Saint Bernard de Clairvaux',
+        id: 'barbe_noire',
+        name: 'Barbe Noire',
         gender: 'm',
-        tags: ['religion', 'france', 'moyen-age', 'moine', 'croisade'],
-        description: "Moine cistercien influent, prêcheur de la deuxième croisade."
-    },
-    {
-        id: 'vincent_de_paul',
-        name: 'Saint Vincent de Paul',
-        gender: 'm',
-        tags: ['religion', 'france', '17e', 'humanitaire'],
-        description: "Prêtre dévoué aux pauvres, fondateur des Lazaristes et des Filles de la Charité."
-    },
-
-    // === DIVERS (Mode, Gastronomie, Sport...) ===
-    {
-        id: 'christian_dior',
-        name: 'Christian Dior',
-        gender: 'm',
-        tags: ['art', 'france', '20e', 'mode', 'luxe'],
-        description: "Couturier fondateur de la maison Dior, créateur du 'New Look'."
-    },
-    {
-        id: 'yves_saint_laurent',
-        name: 'Yves Saint Laurent',
-        gender: 'm',
-        tags: ['art', 'france', '20e', 'mode', 'luxe'],
-        description: "Couturier visionnaire qui a démocratisé la haute couture."
-    },
-    {
-        id: 'escoffier',
-        name: 'Auguste Escoffier',
-        gender: 'm',
-        tags: ['france', '19e', 'gastronomie', 'cuisine'],
-        description: "Roi des cuisiniers, codificateur de la cuisine française moderne."
-    },
-    {
-        id: 'zinedine_zidane',
-        name: 'Zinedine Zidane',
-        gender: 'm',
-        tags: ['france', '20e', 'sport', 'football'],
-        description: "Footballeur légendaire, héros de la Coupe du monde 1998."
-    },
-    {
-        id: 'marcel_cerdan',
-        name: 'Marcel Cerdan',
-        gender: 'm',
-        tags: ['france', '20e', 'sport', 'boxe'],
-        description: "Champion du monde de boxe, amant d'Édith Piaf, mort dans un crash aérien."
-    },
-    {
-        id: 'alain_delon',
-        name: 'Alain Delon',
-        gender: 'm',
-        tags: ['art', 'france', '20e', 'cinema'],
-        description: "Légende du cinéma français, icône de beauté masculine internationale."
-    },
-    {
-        id: 'jean_paul_belmondo',
-        name: 'Jean-Paul Belmondo',
-        gender: 'm',
-        tags: ['art', 'france', '20e', 'cinema'],
-        description: "Acteur cascadeur emblématique, star de la Nouvelle Vague et du film d'action."
-    },
-    {
-        id: 'gustave_courbet',
-        name: 'Gustave Courbet',
-        gender: 'm',
-        tags: ['art', 'peinture', 'france', '19e', 'realisme'],
-        description: "Chef de file du réalisme en peinture, artiste engagé politiquement."
-    },
-    {
-        id: 'sarah_bernhardt',
-        name: 'Sarah Bernhardt',
-        gender: 'f',
-        tags: ['art', 'théâtre', 'france', '19e', 'actrice'],
-        description: "La plus grande actrice du XIXe siècle, surnommée la Voix d'or."
-    },
-    {
-        id: 'nostradamus',
-        name: 'Nostradamus',
-        gender: 'm',
-        tags: ['science', 'france', 'renaissance', 'medecine', 'prophetie'],
-        description: "Médecin et astrologue, célèbre pour ses Prophéties sibyllines."
-    },
-    {
-        id: 'marquis_de_sade',
-        name: 'Marquis de Sade',
-        gender: 'm',
-        tags: ['art', 'littérature', 'france', '18e', 'ecrivain', 'philosophie'],
-        description: "Écrivain libertin et philosophe, emprisonné pour ses écrits scandaleux."
-    },
-    {
-        id: 'condorcet',
-        name: 'Nicolas de Condorcet',
-        gender: 'm',
-        tags: ['philosophie', 'science', 'france', '18e', 'lumieres', 'mathematiques', 'feminisme'],
-        description: "Mathématicien et philosophe des Lumières, défenseur du droit des femmes."
+        tags: ['pirate', 'uk', '18e', 'ocean'],
+        description: "Pirate le plus redouté des Caraïbes, terreur des mers au XVIIIe siècle."
     },
 ];
