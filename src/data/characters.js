@@ -1,515 +1,348 @@
+// Helper to create character entries compactly
+const c = (id, name, gender, tags, description) => ({ id, name, gender, tags: tags.split(','), description });
+
 export const characters = [
-    // === MUSIQUE & POP CULTURE ===
-    {
-        id: 'michael_jackson',
-        name: 'Michael Jackson',
-        gender: 'm',
-        tags: ['musique', 'pop', 'usa', '20e', 'danse', 'artiste'],
-        description: "Le Roi de la Pop, artiste le plus vendu de l'histoire, créateur du moonwalk."
-    },
-    {
-        id: 'elvis_presley',
-        name: 'Elvis Presley',
-        gender: 'm',
-        tags: ['musique', 'rock', 'usa', '20e', 'artiste'],
-        description: "Le King du Rock'n'Roll, icône musicale américaine des années 50-70."
-    },
-    {
-        id: 'bob_marley',
-        name: 'Bob Marley',
-        gender: 'm',
-        tags: ['musique', 'reggae', 'jamaïque', '20e', 'artiste', 'paix'],
-        description: "Légende du reggae, symbole de paix et ambassadeur de la culture jamaïcaine."
-    },
-    {
-        id: 'freddie_mercury',
-        name: 'Freddie Mercury',
-        gender: 'm',
-        tags: ['musique', 'rock', 'uk', '20e', 'artiste'],
-        description: "Chanteur de Queen, voix légendaire connue pour Bohemian Rhapsody."
-    },
-    {
-        id: 'john_lennon',
-        name: 'John Lennon',
-        gender: 'm',
-        tags: ['musique', 'rock', 'uk', '20e', 'artiste', 'paix'],
-        description: "Cofondateur des Beatles, militant pour la paix, auteur de Imagine."
-    },
-    {
-        id: 'madonna',
-        name: 'Madonna',
-        gender: 'f',
-        tags: ['musique', 'pop', 'usa', '20e', 'artiste'],
-        description: "Reine de la Pop, artiste féminine la plus vendue de tous les temps."
-    },
-    {
-        id: 'edith_piaf',
-        name: 'Édith Piaf',
-        gender: 'f',
-        tags: ['musique', 'chanson', 'france', '20e', 'artiste'],
-        description: "La Môme, voix inoubliable de La Vie en rose et Non, je ne regrette rien."
-    },
-    {
-        id: 'tupac',
-        name: 'Tupac Shakur',
-        gender: 'm',
-        tags: ['musique', 'rap', 'usa', '20e', 'artiste'],
-        description: "Rappeur légendaire et poète, figure emblématique du hip-hop des années 90."
-    },
-    {
-        id: 'beethoven',
-        name: 'Ludwig van Beethoven',
-        gender: 'm',
-        tags: ['musique', 'classique', 'allemagne', '19e', 'compositeur'],
-        description: "Compositeur devenu sourd, auteur de la 9e Symphonie et de la Lettre à Élise."
-    },
-    {
-        id: 'mozart',
-        name: 'Wolfgang Amadeus Mozart',
-        gender: 'm',
-        tags: ['musique', 'classique', 'autriche', '18e', 'compositeur'],
-        description: "Enfant prodige et génie musical, compositeur de plus de 600 œuvres."
-    },
+    // ===== MUSIQUE (1-65) =====
+    c('michael_jackson', 'Michael Jackson', 'm', 'musique,pop,usa,20e', "Le Roi de la Pop, artiste le plus vendu de l'histoire."),
+    c('elvis_presley', 'Elvis Presley', 'm', 'musique,rock,usa,20e', "Le King du Rock'n'Roll, icône musicale américaine."),
+    c('bob_marley', 'Bob Marley', 'm', 'musique,reggae,jamaïque,20e', "Légende du reggae, symbole de paix."),
+    c('freddie_mercury', 'Freddie Mercury', 'm', 'musique,rock,uk,20e', "Chanteur de Queen, voix légendaire."),
+    c('john_lennon', 'John Lennon', 'm', 'musique,rock,uk,20e', "Cofondateur des Beatles, auteur de Imagine."),
+    c('madonna', 'Madonna', 'f', 'musique,pop,usa,20e', "Reine de la Pop, artiste féminine la plus vendue."),
+    c('edith_piaf', 'Édith Piaf', 'f', 'musique,chanson,france,20e', "La Môme, voix de La Vie en rose."),
+    c('tupac', 'Tupac Shakur', 'm', 'musique,rap,usa,20e', "Rappeur légendaire, figure du hip-hop des années 90."),
+    c('beethoven', 'Ludwig van Beethoven', 'm', 'musique,classique,allemagne,19e', "Compositeur devenu sourd, auteur de la 9e Symphonie."),
+    c('mozart', 'Wolfgang Amadeus Mozart', 'm', 'musique,classique,autriche,18e', "Enfant prodige et génie musical."),
+    c('david_bowie', 'David Bowie', 'm', 'musique,rock,uk,20e', "Caméléon du rock, créateur de Ziggy Stardust."),
+    c('prince', 'Prince', 'm', 'musique,pop,usa,20e', "Génie musical, interprète de Purple Rain."),
+    c('jimi_hendrix', 'Jimi Hendrix', 'm', 'musique,rock,usa,20e', "Plus grand guitariste de tous les temps."),
+    c('frank_sinatra', 'Frank Sinatra', 'm', 'musique,jazz,usa,20e', "The Voice, crooner de My Way."),
+    c('whitney_houston', 'Whitney Houston', 'f', 'musique,pop,usa,20e', "La Voix, interprète de I Will Always Love You."),
+    c('amy_winehouse', 'Amy Winehouse', 'f', 'musique,soul,uk,21e', "Chanteuse talentueuse disparue à 27 ans."),
+    c('eminem', 'Eminem', 'm', 'musique,rap,usa,21e', "Rappeur blanc le plus vendu."),
+    c('jay_z', 'Jay-Z', 'm', 'musique,rap,usa,21e', "Mogul du hip-hop et entrepreneur milliardaire."),
+    c('beyonce', 'Beyoncé', 'f', 'musique,pop,usa,21e', "Queen B, superstar mondiale et icône féministe."),
+    c('rihanna', 'Rihanna', 'f', 'musique,pop,barbade,21e', "Superstar de la pop et femme d'affaires."),
+    c('adele', 'Adele', 'f', 'musique,pop,uk,21e', "Chanteuse britannique aux ventes records."),
+    c('bob_dylan', 'Bob Dylan', 'm', 'musique,folk,usa,20e', "Poète du folk-rock, Prix Nobel de littérature."),
+    c('aretha_franklin', 'Aretha Franklin', 'f', 'musique,soul,usa,20e', "Reine de la Soul, interprète de Respect."),
+    c('stevie_wonder', 'Stevie Wonder', 'm', 'musique,soul,usa,20e', "Génie musical aveugle, auteur de Superstition."),
+    c('mick_jagger', 'Mick Jagger', 'm', 'musique,rock,uk,20e', "Chanteur des Rolling Stones."),
+    c('kurt_cobain', 'Kurt Cobain', 'm', 'musique,grunge,usa,20e', "Leader de Nirvana."),
+    c('johnny_hallyday', 'Johnny Hallyday', 'm', 'musique,rock,france,20e', "Plus grande star du rock français."),
+    c('charles_aznavour', 'Charles Aznavour', 'm', 'musique,chanson,france,20e', "Monstre sacré, interprète de La Bohème."),
+    c('jacques_brel', 'Jacques Brel', 'm', 'musique,chanson,belgique,20e', "Poète de Ne me quitte pas."),
+    c('serge_gainsbourg', 'Serge Gainsbourg', 'm', 'musique,chanson,france,20e', "Provocateur génial, auteur de La Javanaise."),
+    c('celine_dion', 'Céline Dion', 'f', 'musique,pop,canada,20e', "Interprète de My Heart Will Go On."),
+    c('mariah_carey', 'Mariah Carey', 'f', 'musique,pop,usa,20e', "Diva aux 5 octaves, reine de Noël."),
+    c('elton_john', 'Elton John', 'm', 'musique,pop,uk,20e', "Pianiste flamboyant, auteur de Rocket Man."),
+    c('bruno_mars', 'Bruno Mars', 'm', 'musique,pop,usa,21e', "Interprète de Uptown Funk."),
+    c('ed_sheeran', 'Ed Sheeran', 'm', 'musique,pop,uk,21e', "Auteur-compositeur de Shape of You."),
+    c('drake', 'Drake', 'm', 'musique,rap,canada,21e', "Rappeur canadien aux records de ventes."),
+    c('kanye_west', 'Kanye West', 'm', 'musique,rap,usa,21e', "Rappeur-producteur visionnaire."),
+    c('taylor_swift', 'Taylor Swift', 'f', 'musique,pop,usa,21e', "Superstar mondiale, artiste la plus écoutée."),
+    c('lady_gaga', 'Lady Gaga', 'f', 'musique,pop,usa,21e', "Icône excentrique, interprète de Poker Face."),
+    c('billie_eilish', 'Billie Eilish', 'f', 'musique,pop,usa,21e', "Prodige de la pop alternative."),
+    c('the_weeknd', 'The Weeknd', 'm', 'musique,pop,canada,21e', "Star du R&B, interprète de Blinding Lights."),
+    c('bach', 'Jean-Sébastien Bach', 'm', 'musique,classique,allemagne,18e', "Maître absolu de la musique baroque."),
+    c('vivaldi', 'Antonio Vivaldi', 'm', 'musique,classique,italie,18e', "Compositeur des Quatre Saisons."),
+    c('chopin', 'Frédéric Chopin', 'm', 'musique,classique,pologne,19e', "Poète du piano romantique."),
+    c('verdi', 'Giuseppe Verdi', 'm', 'musique,classique,italie,19e', "Maître de l'opéra italien."),
+    c('debussy', 'Claude Debussy', 'm', 'musique,classique,france,20e', "Compositeur impressionniste."),
+    c('stromae', 'Stromae', 'm', 'musique,pop,belgique,21e', "Maestro de la pop belge."),
+    c('daft_punk', 'Daft Punk', 'm', 'musique,electro,france,21e', "Pionniers de l'électro français."),
+    c('notorious_big', 'The Notorious B.I.G.', 'm', 'musique,rap,usa,20e', "Biggie Smalls, légende du rap East Coast."),
+    c('brian_may', 'Brian May', 'm', 'musique,rock,uk,20e', "Guitariste de Queen et astrophysicien."),
+    c('paul_mccartney', 'Paul McCartney', 'm', 'musique,pop,uk,20e', "Bassiste des Beatles et légende vivante."),
+    c('ringo_starr', 'Ringo Starr', 'm', 'musique,rock,uk,20e', "Batteur des Beatles."),
+    c('george_harrison', 'George Harrison', 'm', 'musique,rock,uk,20e', "Guitariste des Beatles."),
+    c('slash', 'Slash', 'm', 'musique,rock,uk,usa,21e', "Guitariste iconique de Guns N' Roses."),
+    c('axl_rose', 'Axl Rose', 'm', 'musique,rock,usa,20e', "Chanteur de Guns N' Roses."),
+    c('angus_young', 'Angus Young', 'm', 'musique,rock,australie,20e', "Guitariste d'AC/DC en uniforme d'écolier."),
+    c('ozzy_osbourne', 'Ozzy Osbourne', 'm', 'musique,metal,uk,20e', "Prince des Ténèbres, chanteur de Black Sabbath."),
+    c('shakira', 'Shakira', 'f', 'musique,pop,colombie,21e', "Superstar latine, interprète de Waka Waka."),
+    c('jennifer_lopez', 'Jennifer Lopez', 'f', 'musique,pop,usa,21e', "J.Lo, icône de la pop et actrice."),
+    c('justin_bieber', 'Justin Bieber', 'm', 'musique,pop,canada,21e', "Superstar mondiale apparue sur YouTube."),
+    c('katy_perry', 'Katy Perry', 'f', 'musique,pop,usa,21e', "Interprète de Firework et Roar."),
+    c('usher', 'Usher', 'm', 'musique,rnb,usa,21e', "Icône du R&B et danseur exceptionnel."),
+    c('dr_dre', 'Dr. Dre', 'm', 'musique,rap,usa,21e', "Producteur légendaire et fondateur de Beats."),
+    c('snoop_dogg', 'Snoop Dogg', 'm', 'musique,rap,usa,21e', "Icône du rap West Coast."),
+    c('50_cent', '50 Cent', 'm', 'musique,rap,usa,21e', "Rappeur de In da Club."),
 
-    // === CINÉMA & SPECTACLE ===
-    {
-        id: 'marilyn_monroe',
-        name: 'Marilyn Monroe',
-        gender: 'f',
-        tags: ['cinema', 'usa', '20e', 'actrice', 'icône'],
-        description: "Icône de Hollywood et sex-symbol des années 50, star de Certains l'aiment chaud."
-    },
-    {
-        id: 'charlie_chaplin',
-        name: 'Charlie Chaplin',
-        gender: 'm',
-        tags: ['cinema', 'uk', '20e', 'acteur', 'réalisateur', 'comedie'],
-        description: "Créateur de Charlot, génie du cinéma muet et du burlesque."
-    },
-    {
-        id: 'bruce_lee',
-        name: 'Bruce Lee',
-        gender: 'm',
-        tags: ['cinema', 'arts-martiaux', 'usa', 'chine', '20e', 'acteur'],
-        description: "Maître des arts martiaux et acteur, il a révolutionné le film de kung-fu."
-    },
-    {
-        id: 'walt_disney',
-        name: 'Walt Disney',
-        gender: 'm',
-        tags: ['cinema', 'usa', '20e', 'animation', 'entrepreneur'],
-        description: "Créateur de Mickey Mouse et fondateur de l'empire Disney."
-    },
-    {
-        id: 'louis_de_funes',
-        name: 'Louis de Funès',
-        gender: 'm',
-        tags: ['cinema', 'france', '20e', 'acteur', 'comedie'],
-        description: "Roi de la comédie française, inoubliable dans Le Gendarme et La Grande Vadrouille."
-    },
-    {
-        id: 'alain_delon',
-        name: 'Alain Delon',
-        gender: 'm',
-        tags: ['cinema', 'france', '20e', 'acteur'],
-        description: "Légende du cinéma français, icône de beauté masculine internationale."
-    },
+    // ===== CINÉMA & TV (66-135) =====
+    c('marilyn_monroe', 'Marilyn Monroe', 'f', 'cinema,usa,20e,actrice', "Icône de Hollywood des années 50."),
+    c('charlie_chaplin', 'Charlie Chaplin', 'm', 'cinema,uk,20e,acteur', "Créateur de Charlot."),
+    c('bruce_lee', 'Bruce Lee', 'm', 'cinema,arts-martiaux,usa,20e', "Légende du kung-fu."),
+    c('walt_disney', 'Walt Disney', 'm', 'cinema,usa,20e,animation', "Fondateur de l'empire Disney."),
+    c('louis_de_funes', 'Louis de Funès', 'm', 'cinema,france,20e,comedie', "Roi de la comédie française."),
+    c('alain_delon', 'Alain Delon', 'm', 'cinema,france,20e,acteur', "Icône de beauté masculine."),
+    c('arnold_schwarzenegger', 'Arnold Schwarzenegger', 'm', 'cinema,sport,usa,20e', "Bodybuilder, acteur (Terminator) et gouverneur."),
+    c('al_pacino', 'Al Pacino', 'm', 'cinema,usa,20e,acteur', "Star du Parrain et de Scarface."),
+    c('robert_de_niro', 'Robert De Niro', 'm', 'cinema,usa,20e,acteur', "Légende du cinéma (Taxi Driver)."),
+    c('clint_eastwood', 'Clint Eastwood', 'm', 'cinema,usa,20e,acteur', "Icône du western et réalisateur oscarisé."),
+    c('audrey_hepburn', 'Audrey Hepburn', 'f', 'cinema,uk,20e,actrice', "Icône d'élégance (Breakfast at Tiffany's)."),
+    c('james_dean', 'James Dean', 'm', 'cinema,usa,20e,acteur', "Rebelle iconique mort jeune."),
+    c('jack_nicholson', 'Jack Nicholson', 'm', 'cinema,usa,20e,acteur', "Inoubliable dans Shining."),
+    c('morgan_freeman', 'Morgan Freeman', 'm', 'cinema,usa,20e,acteur', "Acteur à la voix iconique."),
+    c('alfred_hitchcock', 'Alfred Hitchcock', 'm', 'cinema,uk,20e,réalisateur', "Maître du suspense."),
+    c('steven_spielberg', 'Steven Spielberg', 'm', 'cinema,usa,20e,réalisateur', "Créateur de Jurassic Park et E.T."),
+    c('stan_lee', 'Stan Lee', 'm', 'cinema,usa,20e,comics', "Créateur de l'univers Marvel."),
+    c('jean_paul_belmondo', 'Jean-Paul Belmondo', 'm', 'cinema,france,20e,acteur', "Bébel, star du cinéma d'action."),
+    c('brigitte_bardot', 'Brigitte Bardot', 'f', 'cinema,france,20e,actrice', "B.B., icône devenue militante animale."),
+    c('leonardo_dicaprio', 'Leonardo DiCaprio', 'm', 'cinema,usa,21e,acteur', "Star de Titanic et militant écolo."),
+    c('tom_hanks', 'Tom Hanks', 'm', 'cinema,usa,20e,acteur', "Star de Forrest Gump."),
+    c('will_smith', 'Will Smith', 'm', 'cinema,usa,21e,acteur', "Star de Men in Black."),
+    c('denzel_washington', 'Denzel Washington', 'm', 'cinema,usa,20e,acteur', "L'un des plus grands acteurs de sa génération."),
+    c('quentin_tarantino', 'Quentin Tarantino', 'm', 'cinema,usa,20e,réalisateur', "Réalisateur de Pulp Fiction."),
+    c('meryl_streep', 'Meryl Streep', 'f', 'cinema,usa,20e,actrice', "Actrice aux multiples Oscars."),
+    c('angelina_jolie', 'Angelina Jolie', 'f', 'cinema,usa,21e,actrice', "Star d'action et humanitaire."),
+    c('keanu_reeves', 'Keanu Reeves', 'm', 'cinema,usa,21e,acteur', "Star de Matrix et John Wick."),
+    c('jackie_chan', 'Jackie Chan', 'm', 'cinema,arts-martiaux,chine,20e', "Maître du kung-fu comique."),
+    c('mr_bean', 'Mr. Bean', 'm', 'cinema,uk,20e,comedie', "Personnage muet iconique."),
+    c('omar_sy', 'Omar Sy', 'm', 'cinema,france,21e,acteur', "Star d'Intouchables et Lupin."),
+    c('brad_pitt', 'Brad Pitt', 'm', 'cinema,usa,21e,acteur', "Icône de Hollywood (Fight Club)."),
+    c('johnny_depp', 'Johnny Depp', 'm', 'cinema,usa,21e,acteur', "Jack Sparrow dans Pirates des Caraïbes."),
+    c('tom_cruise', 'Tom Cruise', 'm', 'cinema,usa,21e,acteur', "Star de Mission Impossible."),
+    c('harrison_ford', 'Harrison Ford', 'm', 'cinema,usa,20e,acteur', "Indiana Jones et Han Solo."),
+    c('julia_roberts', 'Julia Roberts', 'f', 'cinema,usa,20e,actrice', "Pretty Woman."),
+    c('scarlett_johansson', 'Scarlett Johansson', 'f', 'cinema,usa,21e,actrice', "La Veuve Noire chez Marvel."),
+    c('nicole_kidman', 'Nicole Kidman', 'f', 'cinema,australie,21e,actrice', "Star oscarisée de Moulin Rouge."),
+    c('george_clooney', 'George Clooney', 'm', 'cinema,usa,21e,acteur', "Acteur et réalisateur engagé."),
+    c('samuel_l_jackson', 'Samuel L. Jackson', 'm', 'cinema,usa,21e,acteur', "Acteur le plus rentable de l'histoire."),
+    c('natalie_portman', 'Natalie Portman', 'f', 'cinema,usa,21e,actrice', "Star de Léon et Black Swan."),
+    c('emma_watson', 'Emma Watson', 'f', 'cinema,uk,21e,actrice', "Hermione Granger dans Harry Potter."),
+    c('jim_carrey', 'Jim Carrey', 'm', 'cinema,canada,20e,comedie', "Génie de l'expressivité (The Mask)."),
+    c('robin_williams', 'Robin Williams', 'm', 'cinema,usa,20e,acteur', "Génie de l'improvisation (Madame Doubtfire)."),
+    c('woody_allen', 'Woody Allen', 'm', 'cinema,usa,20e,réalisateur', "Maître de la comédie intellectuelle."),
+    c('martin_scorsese', 'Martin Scorsese', 'm', 'cinema,usa,20e,réalisateur', "Réalisateur de Taxi Driver et Goodfellas."),
+    c('christopher_nolan', 'Christopher Nolan', 'm', 'cinema,uk,21e,réalisateur', "Maître du blockbuster cérébral (Inception)."),
+    c('james_cameron', 'James Cameron', 'm', 'cinema,canada,21e,réalisateur', "Réalisateur de Titanic et Avatar."),
+    c('oprah_winfrey', 'Oprah Winfrey', 'f', 'tv,usa,21e,animatrice', "Reine des talk-shows américains."),
+    c('mrbeast', 'MrBeast', 'm', 'web,usa,21e,youtuber', "Plus grand youtubeur du monde."),
+    c('hugh_jackman', 'Hugh Jackman', 'm', 'cinema,australie,21e,acteur', "L'interprète de Wolverine."),
 
-    // === SPORT ===
-    {
-        id: 'muhammad_ali',
-        name: 'Muhammad Ali',
-        gender: 'm',
-        tags: ['sport', 'boxe', 'usa', '20e', 'militant'],
-        description: "The Greatest, champion du monde de boxe et militant pour les droits civiques."
-    },
-    {
-        id: 'pele',
-        name: 'Pelé',
-        gender: 'm',
-        tags: ['sport', 'football', 'brésil', '20e'],
-        description: "Le Roi Pelé, seul joueur triple champion du monde de football."
-    },
-    {
-        id: 'michael_jordan',
-        name: 'Michael Jordan',
-        gender: 'm',
-        tags: ['sport', 'basketball', 'usa', '20e'],
-        description: "His Airness, considéré comme le plus grand basketteur de tous les temps."
-    },
-    {
-        id: 'zinedine_zidane',
-        name: 'Zinedine Zidane',
-        gender: 'm',
-        tags: ['sport', 'football', 'france', '20e'],
-        description: "Footballeur légendaire, héros de la Coupe du monde 1998 avec la France."
-    },
-    {
-        id: 'usain_bolt',
-        name: 'Usain Bolt',
-        gender: 'm',
-        tags: ['sport', 'athlétisme', 'jamaïque', '21e'],
-        description: "L'homme le plus rapide de l'histoire, recordman du 100m et 200m."
-    },
-    {
-        id: 'serena_williams',
-        name: 'Serena Williams',
-        gender: 'f',
-        tags: ['sport', 'tennis', 'usa', '21e'],
-        description: "23 titres du Grand Chelem, considérée comme la plus grande joueuse de tennis."
-    },
-    {
-        id: 'maradona',
-        name: 'Diego Maradona',
-        gender: 'm',
-        tags: ['sport', 'football', 'argentine', '20e'],
-        description: "El Pibe de Oro, auteur du But du siècle et de la Main de Dieu."
-    },
+    // ===== SPORT (136-215) =====
+    c('muhammad_ali', 'Muhammad Ali', 'm', 'sport,boxe,usa,20e', "The Greatest, champion de boxe et militant."),
+    c('pele', 'Pelé', 'm', 'sport,football,brésil,20e', "Le Roi Pelé, triple champion du monde."),
+    c('michael_jordan', 'Michael Jordan', 'm', 'sport,basketball,usa,20e', "His Airness, légende de la NBA."),
+    c('zinedine_zidane', 'Zinedine Zidane', 'm', 'sport,football,france,20e', "Héros de la Coupe du monde 1998."),
+    c('usain_bolt', 'Usain Bolt', 'm', 'sport,athlétisme,jamaïque,21e', "L'homme le plus rapide de l'histoire."),
+    c('serena_williams', 'Serena Williams', 'f', 'sport,tennis,usa,21e', "23 titres du Grand Chelem."),
+    c('maradona', 'Diego Maradona', 'm', 'sport,football,argentine,20e', "Auteur de la Main de Dieu."),
+    c('lionel_messi', 'Lionel Messi', 'm', 'sport,football,argentine,21e', "La Pulga, multiple Ballon d'Or."),
+    c('cristiano_ronaldo', 'Cristiano Ronaldo', 'm', 'sport,football,portugal,21e', "CR7, machine à buts mondiale."),
+    c('kobe_bryant', 'Kobe Bryant', 'm', 'sport,basketball,usa,21e', "Black Mamba, légende des Lakers."),
+    c('lebron_james', 'LeBron James', 'm', 'sport,basketball,usa,21e', "Le King, recordman de points en NBA."),
+    c('roger_federer', 'Roger Federer', 'm', 'sport,tennis,suisse,21e', "Maestro du tennis mondial."),
+    c('rafael_nadal', 'Rafael Nadal', 'm', 'sport,tennis,espagne,21e', "Le Roi de la terre battue."),
+    c('novak_djokovic', 'Novak Djokovic', 'm', 'sport,tennis,serbie,21e', "Recordman de Grands Chelems."),
+    c('mike_tyson', 'Mike Tyson', 'm', 'sport,boxe,usa,20e', "Iron Mike, terreur des rings."),
+    c('neymar', 'Neymar', 'm', 'sport,football,brésil,21e', "Star brésilienne au dribble magique."),
+    c('kylian_mbappe', 'Kylian Mbappé', 'm', 'sport,football,france,21e', "Champion du monde à 19 ans."),
+    c('lewis_hamilton', 'Lewis Hamilton', 'm', 'sport,f1,uk,21e', "7 fois champion du monde de F1."),
+    c('michael_schumacher', 'Michael Schumacher', 'm', 'sport,f1,allemagne,21e', "Légende de Ferrari en F1."),
+    c('ayrton_senna', 'Ayrton Senna', 'm', 'sport,f1,brésil,20e', "Génie brésilien mort en course."),
+    c('tiger_woods', 'Tiger Woods', 'm', 'sport,golf,usa,21e', "Légende absolue du golf."),
+    c('michael_phelps', 'Michael Phelps', 'm', 'sport,natation,usa,21e', "23 médailles d'or olympiques."),
+    c('thierry_henry', 'Thierry Henry', 'm', 'sport,football,france,20e', "Légende d'Arsenal et de la France."),
+    c('ronaldinho', 'Ronaldinho', 'm', 'sport,football,brésil,21e', "Magicien du ballon rond."),
+    c('wayne_gretzky', 'Wayne Gretzky', 'm', 'sport,hockey,canada,20e', "The Great One du hockey."),
+    c('mohamed_salah', 'Mohamed Salah', 'm', 'sport,football,egypte,21e', "Star égyptienne de Liverpool."),
+    c('simone_biles', 'Simone Biles', 'f', 'sport,gymnastique,usa,21e', "Plus grande gymnaste de l'histoire."),
+    c('tony_parker', 'Tony Parker', 'm', 'sport,basketball,france,21e', "Légende des Spurs et du basket français."),
+    c('floyd_mayweather', 'Floyd Mayweather', 'm', 'sport,boxe,usa,21e', "Boxeur invaincu en 50 combats."),
+    c('conor_mcgregor', 'Conor McGregor', 'm', 'sport,mma,irlande,21e', "Star mondiale du MMA."),
+    c('shaquille_oneal', 'Shaquille O\'Neal', 'm', 'sport,basketball,usa,20e', "Shaq, géant dominant de la NBA."),
+    c('david_beckham', 'David Beckham', 'm', 'sport,football,uk,21e', "Icône de mode et du foot."),
+    c('ronaldo_r9', 'Ronaldo (R9)', 'm', 'sport,football,brésil,20e', "Il Fenomeno brésilien."),
+    c('karim_benzema', 'Karim Benzema', 'm', 'sport,football,france,21e', "Ballon d'Or 2022."),
+    c('rafael_marquez', 'Rafael Márquez', 'm', 'sport,football,mexique,21e', "Légende du football mexicain."),
+    c('magic_johnson', 'Magic Johnson', 'm', 'sport,basketball,usa,20e', "Meneur légendaire des Lakers."),
+    c('steph_curry', 'Stephen Curry', 'm', 'sport,basketball,usa,21e', "Révolutionnaire du tir à 3 points."),
+    c('valentino_rossi', 'Valentino Rossi', 'm', 'sport,moto,italie,21e', "The Doctor, icône du MotoGP."),
+    c('larry_bird', 'Larry Bird', 'm', 'sport,basketball,usa,20e', "Légende des Celtics."),
+    c('bjorn_borg', 'Björn Borg', 'm', 'sport,tennis,suède,20e', "Icône du tennis des années 70."),
+    c('steffi_graf', 'Steffi Graf', 'f', 'sport,tennis,allemagne,20e', "Légende du tennis féminin."),
+    c('andre_agassi', 'Andre Agassi', 'm', 'sport,tennis,usa,20e', "Le Kid de Las Vegas."),
+    c('rafa_nadal', 'Rafa Nadal', 'm', 'sport,tennis,espagne,21e', "Guerrier des courts de tennis."),
+    c('sebastien_loeb', 'Sébastien Loeb', 'm', 'sport,rallye,france,21e', "9 fois champion du monde WRC."),
+    c('lance_armstrong', 'Lance Armstrong', 'm', 'sport,cyclisme,usa,21e', "Cycliste déchu pour dopage."),
+    c('eddie_merckx', 'Eddy Merckx', 'm', 'sport,cyclisme,belgique,20e', "Le Cannibale du cyclisme."),
+    c('george_best', 'George Best', 'm', 'sport,football,irlande-du-nord,20e', "Génie autodistruit du football."),
+    c('johan_cruyff', 'Johan Cruyff', 'm', 'sport,football,pays-bas,20e', "Cerveau du football total."),
+    c('zico', 'Zico', 'm', 'sport,football,brésil,20e', "Le Pelé blanc."),
+    c('platini', 'Michel Platini', 'm', 'sport,football,france,20e', "Triple Ballon d'Or français."),
 
-    // === SCIENCE & INVENTEURS ===
-    {
-        id: 'albert_einstein',
-        name: 'Albert Einstein',
-        gender: 'm',
-        tags: ['science', 'physique', 'allemagne', '20e', 'nobel', 'génie'],
-        description: "Père de la relativité, l'un des plus grands génies de l'histoire. E=mc²."
-    },
-    {
-        id: 'marie_curie',
-        name: 'Marie Curie',
-        gender: 'f',
-        tags: ['science', 'chimie', 'pologne', 'france', '20e', 'nobel'],
-        description: "Pionnière de la radioactivité, première femme doublement Prix Nobel."
-    },
-    {
-        id: 'nikola_tesla',
-        name: 'Nikola Tesla',
-        gender: 'm',
-        tags: ['science', 'inventeur', 'serbie', 'usa', '20e', 'electricité'],
-        description: "Inventeur du courant alternatif, visionnaire de l'énergie moderne."
-    },
-    {
-        id: 'thomas_edison',
-        name: 'Thomas Edison',
-        gender: 'm',
-        tags: ['science', 'inventeur', 'usa', '19e', 'electricité'],
-        description: "Inventeur de l'ampoule et du phonographe, symbole de l'ingéniosité américaine."
-    },
-    {
-        id: 'leonard_de_vinci',
-        name: 'Léonard de Vinci',
-        gender: 'm',
-        tags: ['science', 'art', 'peinture', 'italie', 'renaissance', 'inventeur', 'génie'],
-        description: "Génie universel : peintre de La Joconde, inventeur, anatomiste, ingénieur."
-    },
-    {
-        id: 'louis_pasteur',
-        name: 'Louis Pasteur',
-        gender: 'm',
-        tags: ['science', 'france', '19e', 'medecine', 'vaccin'],
-        description: "Inventeur de la pasteurisation et du vaccin contre la rage."
-    },
-    {
-        id: 'charles_darwin',
-        name: 'Charles Darwin',
-        gender: 'm',
-        tags: ['science', 'biologie', 'uk', '19e', 'evolution'],
-        description: "Père de la théorie de l'évolution par sélection naturelle."
-    },
-    {
-        id: 'isaac_newton',
-        name: 'Isaac Newton',
-        gender: 'm',
-        tags: ['science', 'physique', 'mathematiques', 'uk', '17e'],
-        description: "Découvreur de la gravitation universelle et des lois du mouvement."
-    },
-    {
-        id: 'stephen_hawking',
-        name: 'Stephen Hawking',
-        gender: 'm',
-        tags: ['science', 'physique', 'uk', '21e', 'astrophysique'],
-        description: "Génie de l'astrophysique, auteur d'Une brève histoire du temps, malgré la maladie."
-    },
-    {
-        id: 'galilee',
-        name: 'Galilée',
-        gender: 'm',
-        tags: ['science', 'astronomie', 'italie', 'renaissance', 'physique'],
-        description: "Père de l'astronomie moderne, persécuté pour avoir défendu l'héliocentrisme."
-    },
+    // ===== SCIENCE & TECH (216-290) =====
+    c('albert_einstein', 'Albert Einstein', 'm', 'science,physique,allemagne,20e', "Père de la relativité, E=mc²."),
+    c('marie_curie', 'Marie Curie', 'f', 'science,chimie,pologne,20e', "Pionnière de la radioactivité."),
+    c('nikola_tesla', 'Nikola Tesla', 'm', 'science,inventeur,serbie,20e', "Inventeur du courant alternatif."),
+    c('thomas_edison', 'Thomas Edison', 'm', 'science,inventeur,usa,19e', "Inventeur de l'ampoule."),
+    c('leonard_de_vinci', 'Léonard de Vinci', 'm', 'science,art,italie,renaissance', "Génie universel."),
+    c('louis_pasteur', 'Louis Pasteur', 'm', 'science,france,19e,medecine', "Inventeur du vaccin contre la rage."),
+    c('charles_darwin', 'Charles Darwin', 'm', 'science,biologie,uk,19e', "Père de la théorie de l'évolution."),
+    c('isaac_newton', 'Isaac Newton', 'm', 'science,physique,uk,17e', "Découvreur de la gravitation."),
+    c('stephen_hawking', 'Stephen Hawking', 'm', 'science,physique,uk,21e', "Génie de l'astrophysique."),
+    c('galilee', 'Galilée', 'm', 'science,astronomie,italie,renaissance', "Père de l'astronomie moderne."),
+    c('alan_turing', 'Alan Turing', 'm', 'science,informatique,uk,20e', "Père de l'informatique."),
+    c('gustave_eiffel', 'Gustave Eiffel', 'm', 'science,france,19e', "Concepteur de la tour Eiffel."),
+    c('steve_jobs', 'Steve Jobs', 'm', 'tech,usa,21e,entrepreneur', "Cofondateur d'Apple."),
+    c('elon_musk', 'Elon Musk', 'm', 'tech,usa,21e,entrepreneur', "Fondateur de SpaceX et Tesla."),
+    c('bill_gates', 'Bill Gates', 'm', 'tech,usa,21e,entrepreneur', "Cofondateur de Microsoft."),
+    c('mark_zuckerberg', 'Mark Zuckerberg', 'm', 'tech,usa,21e,entrepreneur', "Fondateur de Facebook/Meta."),
+    c('jeff_bezos', 'Jeff Bezos', 'm', 'tech,usa,21e,entrepreneur', "Fondateur d'Amazon."),
+    c('richard_feynman', 'Richard Feynman', 'm', 'science,physique,usa,20e', "Nobel de physique et vulgarisateur."),
+    c('carl_sagan', 'Carl Sagan', 'm', 'science,astronomie,usa,20e', "Créateur de la série Cosmos."),
+    c('neil_degrasse_tyson', 'Neil deGrasse Tyson', 'm', 'science,astronomie,usa,21e', "Vulgarisateur scientifique mondial."),
+    c('ada_lovelace', 'Ada Lovelace', 'f', 'science,informatique,uk,19e', "Première programmeuse de l'histoire."),
+    c('rosalind_franklin', 'Rosalind Franklin', 'f', 'science,biologie,uk,20e', "Découvreuse de la structure de l'ADN."),
+    c('jane_goodall', 'Jane Goodall', 'f', 'science,biologie,uk,21e', "Éthologue, experte des chimpanzés."),
+    c('sigmund_freud', 'Sigmund Freud', 'm', 'science,psychologie,autriche,20e', "Père de la psychanalyse."),
+    c('tim_berners_lee', 'Tim Berners-Lee', 'm', 'tech,uk,21e', "Inventeur du World Wide Web."),
+    c('larry_page', 'Larry Page', 'm', 'tech,usa,21e', "Cofondateur de Google."),
+    c('sergey_brin', 'Sergey Brin', 'm', 'tech,usa,21e', "Cofondateur de Google."),
+    c('jack_dorsey', 'Jack Dorsey', 'm', 'tech,usa,21e', "Cofondateur de Twitter."),
+    c('oppenheimer', 'J. Robert Oppenheimer', 'm', 'science,physique,usa,20e', "Père de la bombe atomique."),
+    c('werner_heisenberg', 'Werner Heisenberg', 'm', 'science,physique,allemagne,20e', "Père de la mécanique quantique."),
 
-    // === POLITIQUE & LEADERS ===
-    {
-        id: 'napoleon',
-        name: 'Napoléon Bonaparte',
-        gender: 'm',
-        tags: ['politique', 'militaire', 'france', '19e', 'empereur', 'guerre'],
-        description: "Empereur des Français, conquérant de l'Europe et réformateur du droit civil."
-    },
-    {
-        id: 'martin_luther_king',
-        name: 'Martin Luther King Jr.',
-        gender: 'm',
-        tags: ['politique', 'usa', '20e', 'droits-civiques', 'paix', 'nobel'],
-        description: "Leader du mouvement des droits civiques, célèbre pour son discours I Have a Dream."
-    },
-    {
-        id: 'nelson_mandela',
-        name: 'Nelson Mandela',
-        gender: 'm',
-        tags: ['politique', 'afrique-du-sud', '20e', 'paix', 'nobel', 'prison'],
-        description: "Premier président noir d'Afrique du Sud après 27 ans de prison, symbole de la liberté."
-    },
-    {
-        id: 'gandhi',
-        name: 'Mahatma Gandhi',
-        gender: 'm',
-        tags: ['politique', 'inde', '20e', 'paix', 'non-violence'],
-        description: "Leader de l'indépendance de l'Inde par la non-violence, surnommé le Mahatma."
-    },
-    {
-        id: 'cleopatre',
-        name: 'Cléopâtre',
-        gender: 'f',
-        tags: ['politique', 'egypte', 'antiquité', 'reine'],
-        description: "Dernière reine d'Égypte, célèbre pour sa beauté et ses alliances avec César et Marc Antoine."
-    },
-    {
-        id: 'jules_cesar',
-        name: 'Jules César',
-        gender: 'm',
-        tags: ['politique', 'militaire', 'rome', 'antiquité', 'empereur'],
-        description: "Général et dictateur romain, conquérant de la Gaule, assassiné au Sénat."
-    },
-    {
-        id: 'abraham_lincoln',
-        name: 'Abraham Lincoln',
-        gender: 'm',
-        tags: ['politique', 'usa', '19e', 'président', 'liberté'],
-        description: "16e président des USA, il abolit l'esclavage et fut assassiné au théâtre."
-    },
-    {
-        id: 'de_gaulle',
-        name: 'Charles de Gaulle',
-        gender: 'm',
-        tags: ['politique', 'militaire', 'france', '20e', 'président', 'résistance'],
-        description: "Chef de la France Libre et fondateur de la Ve République."
-    },
-    {
-        id: 'reine_elizabeth',
-        name: 'Élisabeth II',
-        gender: 'f',
-        tags: ['politique', 'royauté', 'uk', '20e', 'reine'],
-        description: "Reine du Royaume-Uni pendant 70 ans, la plus longue monarche britannique."
-    },
-    {
-        id: 'winston_churchill',
-        name: 'Winston Churchill',
-        gender: 'm',
-        tags: ['politique', 'uk', '20e', 'guerre', 'premier-ministre'],
-        description: "Premier ministre britannique pendant la Seconde Guerre mondiale, orateur légendaire."
-    },
-    {
-        id: 'jeanne_darc',
-        name: "Jeanne d'Arc",
-        gender: 'f',
-        tags: ['militaire', 'religion', 'france', 'moyen-age', 'sainte', 'guerre'],
-        description: "Héroïne de la Guerre de Cent Ans, brûlée vive puis canonisée."
-    },
-    {
-        id: 'che_guevara',
-        name: 'Che Guevara',
-        gender: 'm',
-        tags: ['politique', 'militaire', 'argentine', 'cuba', '20e', 'revolution'],
-        description: "Révolutionnaire argentin, figure emblématique de la guérilla cubaine."
-    },
+    // ===== POLITIQUE & LEADERS (291-370) =====
+    c('napoleon', 'Napoléon Bonaparte', 'm', 'politique,france,19e', "Empereur des Français."),
+    c('martin_luther_king', 'Martin Luther King Jr.', 'm', 'politique,usa,20e', "Leader des droits civiques."),
+    c('nelson_mandela', 'Nelson Mandela', 'm', 'politique,afrique-du-sud,20e', "Symbole de la lutte anti-apartheid."),
+    c('gandhi', 'Mahatma Gandhi', 'm', 'politique,inde,20e', "Leader de l'indépendance non-violente."),
+    c('cleopatre', 'Cléopâtre', 'f', 'politique,egypte,antiquité', "Dernière reine d'Égypte."),
+    c('jules_cesar', 'Jules César', 'm', 'politique,rome,antiquité', "Général et dictateur romain."),
+    c('abraham_lincoln', 'Abraham Lincoln', 'm', 'politique,usa,19e', "16e président des USA."),
+    c('de_gaulle', 'Charles de Gaulle', 'm', 'politique,france,20e', "Chef de la France Libre."),
+    c('reine_elizabeth', 'Élisabeth II', 'f', 'politique,uk,20e', "Reine du Royaume-Uni."),
+    c('winston_churchill', 'Winston Churchill', 'm', 'politique,uk,20e', "Premier ministre de la guerre."),
+    c('barack_obama', 'Barack Obama', 'm', 'politique,usa,21e', "Premier président afro-américain."),
+    c('jfk', 'John F. Kennedy', 'm', 'politique,usa,20e', "Président assassiné à Dallas."),
+    c('donald_trump', 'Donald Trump', 'm', 'politique,usa,21e', "45e président des États-Unis."),
+    c('vladimir_poutine', 'Vladimir Poutine', 'm', 'politique,russie,21e', "Président de la Russie."),
+    c('angela_merkel', 'Angela Merkel', 'f', 'politique,allemagne,21e', "Chancelière de l'Allemagne."),
+    c('margaret_thatcher', 'Margaret Thatcher', 'f', 'politique,uk,20e', "La Dame de fer."),
+    c('fidel_castro', 'Fidel Castro', 'm', 'politique,cuba,20e', "Leader de la révolution cubaine."),
+    c('gengis_khan', 'Gengis Khan', 'm', 'politique,mongolie,moyen-age', "Fondateur de l'Empire mongol."),
+    c('charlemagne', 'Charlemagne', 'm', 'politique,france,moyen-age', "Père de l'Europe."),
+    c('louis_xiv', 'Louis XIV', 'm', 'politique,france,17e', "Le Roi-Soleil."),
+    c('mao_zedong', 'Mao Zedong', 'm', 'politique,chine,20e', "Fondateur de la RPC."),
+    c('george_washington', 'George Washington', 'm', 'politique,usa,18e', "Premier président des USA."),
+    c('staline', 'Joseph Staline', 'm', 'politique,russie,20e', "Dirigeant de l'URSS."),
+    c('che_guevara', 'Che Guevara', 'm', 'politique,argentine,20e', "Révolutionnaire iconique."),
+    c('malcolm_x', 'Malcolm X', 'm', 'politique,usa,20e', "Défenseur des droits des Afro-américains."),
+    c('emmanuel_macron', 'Emmanuel Macron', 'm', 'politique,france,21e', "Président de la France."),
+    c('justin_trudeau', 'Justin Trudeau', 'm', 'politique,canada,21e', "Premier ministre du Canada."),
+    c('dalai_lama', 'Dalaï-Lama', 'm', 'religion,tibet,21e', "Chef spirituel tibétain."),
+    c('pape_françois', 'Pape François', 'm', 'religion,italie,21e', "Chef de l'Église catholique."),
+    c('mere_teresa', 'Mère Teresa', 'f', 'religion,inde,20e', "Humanitaire de Calcutta."),
+    c('rosa_parks', 'Rosa Parks', 'f', 'politique,usa,20e', "Mère des droits civiques."),
+    c('simone_veil', 'Simone Veil', 'f', 'politique,france,20e', "Défenseure des droits des femmes."),
+    c('greta_thunberg', 'Greta Thunberg', 'f', 'politique,suède,21e', "Militante écologique."),
+    c('malala', 'Malala Yousafzai', 'f', 'politique,pakistan,21e', "Nobel de la paix."),
+    c('reine_victoria', 'Reine Victoria', 'f', 'politique,uk,19e', "Souveraine de l'Empire britannique."),
+    c('indira_gandhi', 'Indira Gandhi', 'f', 'politique,inde,20e', "Première ministre indienne."),
+    c('benazir_bhutto', 'Benazir Bhutto', 'f', 'politique,pakistan,20e', "Première femme à diriger un pays musulman."),
+    c('eva_peron', 'Eva Perón', 'f', 'politique,argentine,20e', "Evita, icône argentine."),
+    c('jacinda_ardern', 'Jacinda Ardern', 'f', 'politique,nouvelle-zélande,21e', "Dirigeante progressiste kiwi."),
+    c('kim_jong_un', 'Kim Jong-un', 'm', 'politique,corée-du-nord,21e', "Dirigeant de la Corée du Nord."),
 
-    // === LITTÉRATURE & PHILOSOPHIE ===
-    {
-        id: 'victor_hugo',
-        name: 'Victor Hugo',
-        gender: 'm',
-        tags: ['littérature', 'france', '19e', 'ecrivain', 'poète'],
-        description: "Auteur des Misérables et de Notre-Dame de Paris, géant du romantisme."
-    },
-    {
-        id: 'william_shakespeare',
-        name: 'William Shakespeare',
-        gender: 'm',
-        tags: ['littérature', 'théâtre', 'uk', 'renaissance', 'ecrivain'],
-        description: "Plus grand dramaturge de l'histoire, auteur de Roméo et Juliette et Hamlet."
-    },
-    {
-        id: 'moliere',
-        name: 'Molière',
-        gender: 'm',
-        tags: ['littérature', 'théâtre', 'france', '17e', 'ecrivain', 'comedien'],
-        description: "Dramaturge et comédien, auteur du Tartuffe et du Malade imaginaire."
-    },
-    {
-        id: 'voltaire',
-        name: 'Voltaire',
-        gender: 'm',
-        tags: ['littérature', 'philosophie', 'france', '18e', 'ecrivain', 'lumières'],
-        description: "Philosophe des Lumières, défenseur de la tolérance et auteur de Candide."
-    },
-    {
-        id: 'saint_exupery',
-        name: 'Antoine de Saint-Exupéry',
-        gender: 'm',
-        tags: ['littérature', 'france', '20e', 'ecrivain', 'aviateur'],
-        description: "Aviateur et auteur du Petit Prince, disparu en vol en 1944."
-    },
-    {
-        id: 'anne_frank',
-        name: 'Anne Frank',
-        gender: 'f',
-        tags: ['littérature', 'allemagne', 'pays-bas', '20e', 'guerre', 'shoah'],
-        description: "Adolescente juive dont le journal intime est devenu un symbole de la Shoah."
-    },
+    // ===== LITTÉRATURE & ART (371-440) =====
+    c('picasso', 'Pablo Picasso', 'm', 'art,espagne,20e', "Génie du cubisme."),
+    c('van_gogh', 'Vincent van Gogh', 'm', 'art,pays-bas,19e', "Peintre de la Nuit étoilée."),
+    c('victor_hugo', 'Victor Hugo', 'm', 'litterature,france,19e', "Auteur des Misérables."),
+    c('william_shakespeare', 'William Shakespeare', 'm', 'litterature,uk,renaissance', "Plus grand dramaturge."),
+    c('moliere', 'Molière', 'm', 'litterature,france,17e', "Maître de la comédie française."),
+    c('jk_rowling', 'J.K. Rowling', 'f', 'litterature,uk,21e', "Créatrice de Harry Potter."),
+    c('tolkien', 'J.R.R. Tolkien', 'm', 'litterature,uk,20e', "Auteur du Seigneur des Anneaux."),
+    c('frida_kahlo', 'Frida Kahlo', 'f', 'art,mexique,20e', "Peintre et icône féministe."),
+    c('salvador_dali', 'Salvador Dalí', 'm', 'art,espagne,20e', "Maître du surréalisme."),
+    c('monet', 'Claude Monet', 'm', 'art,france,19e', "Père de l'impressionnisme."),
+    c('andy_warhol', 'Andy Warhol', 'm', 'art,usa,20e', "Pape du pop art."),
+    c('banksy', 'Banksy', 'm', 'art,uk,21e', "Artiste de rue anonyme."),
+    c('michel_ange', 'Michel-Ange', 'm', 'art,italie,renaissance', "Sculpteur du David."),
+    c('rembrandt', 'Rembrandt', 'm', 'art,pays-bas,17e', "Maître du clair-obscur."),
+    c('agatha_christie', 'Agatha Christie', 'f', 'litterature,uk,20e', "Reine du crime."),
+    c('ernest_hemingway', 'Ernest Hemingway', 'm', 'litterature,usa,20e', "Écrivain aventurier."),
+    c('george_orwell', 'George Orwell', 'm', 'litterature,uk,20e', "Auteur de 1984."),
+    c('oscar_wilde', 'Oscar Wilde', 'm', 'litterature,irlande,19e', "Dandy et dramaturge."),
+    c('voltaire', 'Voltaire', 'm', 'litterature,france,18e', "Philosophe des Lumières."),
+    c('socrate', 'Socrate', 'm', 'philosophie,grece,antiquité', "Père de la philosophie."),
+    c('platon', 'Platon', 'm', 'philosophie,grece,antiquité', "Élève de Socrate."),
+    c('aristote', 'Aristote', 'm', 'philosophie,grece,antiquité', "Polymathe grec."),
+    c('jean_jacques_rousseau', 'Jean-Jacques Rousseau', 'm', 'philosophie,france,18e', "Auteur du Contrat Social."),
+    c('descartes', 'René Descartes', 'm', 'philosophie,france,17e', "Penseur du Je pense donc je suis."),
+    c('nietzsche', 'Friedrich Nietzsche', 'm', 'philosophie,allemagne,19e', "Penseur du surhomme."),
+    c('marx', 'Karl Marx', 'm', 'philosophie,allemagne,19e', "Auteur du Capital."),
+    c('simone_de_beauvoir', 'Simone de Beauvoir', 'f', 'philosophie,france,20e', "Auteure du Deuxième Sexe."),
+    c('virginia_woolf', 'Virginia Woolf', 'f', 'litterature,uk,20e', "Écrivaine moderniste majeure."),
+    c('stephen_king', 'Stephen King', 'm', 'litterature,usa,21e', "Maître de l'horreur moderne."),
+    c('haruki_murakami', 'Haruki Murakami', 'm', 'litterature,japon,21e', "Écrivain contemporain majeur."),
+    c('homer', 'Homère', 'm', 'litterature,grece,antiquité', "Poète de l'Iliade et l'Odyssée."),
+    c('le_corbusier', 'Le Corbusier', 'm', 'architecture,france,20e', "Pionnier du modernisme."),
+    c('gaudi', 'Antoni Gaudí', 'm', 'architecture,espagne,20e', "Architecte de la Sagrada Família."),
+    c('christo', 'Christo', 'm', 'art,bulgarie,21e', "Artiste des emballages géants."),
+    c('marina_abramovic', 'Marina Abramović', 'f', 'art,serbie,21e', "Grand-mère de l'art performance."),
+    c('yayoi_kusama', 'Yayoi Kusama', 'f', 'art,japon,21e', "Artiste des pois et des miroirs."),
+    c('jeff_koons', 'Jeff Koons', 'm', 'art,usa,21e', "Artiste néo-pop controversé."),
+    c('ai_weiwei', 'Ai Weiwei', 'm', 'art,chine,21e', "Artiste et dissident chinois."),
+    c('jean_michel_basquiat', 'Jean-Michel Basquiat', 'm', 'art,usa,20e', "Pionnier du néo-expressionnisme."),
+    c('keith_haring', 'Keith Haring', 'm', 'art,usa,20e', "Icône du street art new-yorkais."),
 
-    // === ART ===
-    {
-        id: 'picasso',
-        name: 'Pablo Picasso',
-        gender: 'm',
-        tags: ['art', 'peinture', 'espagne', 'france', '20e', 'cubisme'],
-        description: "Co-fondateur du cubisme, artiste le plus influent du XXe siècle."
-    },
-    {
-        id: 'van_gogh',
-        name: 'Vincent van Gogh',
-        gender: 'm',
-        tags: ['art', 'peinture', 'pays-bas', '19e', 'postimpressionisme'],
-        description: "Peintre maudit de la Nuit étoilée, il ne vendit qu'un seul tableau de son vivant."
-    },
-    {
-        id: 'michel_ange',
-        name: 'Michel-Ange',
-        gender: 'm',
-        tags: ['art', 'peinture', 'sculpture', 'italie', 'renaissance'],
-        description: "Sculpteur du David et peintre du plafond de la Chapelle Sixtine."
-    },
-    {
-        id: 'frida_kahlo',
-        name: 'Frida Kahlo',
-        gender: 'f',
-        tags: ['art', 'peinture', 'mexique', '20e', 'féminisme'],
-        description: "Peintre mexicaine connue pour ses autoportraits et son engagement féministe."
-    },
-    {
-        id: 'salvador_dali',
-        name: 'Salvador Dalí',
-        gender: 'm',
-        tags: ['art', 'peinture', 'espagne', '20e', 'surréalisme'],
-        description: "Maître du surréalisme, célèbre pour ses montres molles et sa moustache."
-    },
-    {
-        id: 'monet',
-        name: 'Claude Monet',
-        gender: 'm',
-        tags: ['art', 'peinture', 'france', '19e', 'impressionnisme'],
-        description: "Père de l'impressionnisme, célèbre pour ses Nymphéas et Impression, soleil levant."
-    },
-
-    // === AVENTURIERS & EXPLORATEURS ===
-    {
-        id: 'neil_armstrong',
-        name: 'Neil Armstrong',
-        gender: 'm',
-        tags: ['exploration', 'espace', 'usa', '20e', 'astronaute'],
-        description: "Premier homme à marcher sur la Lune le 20 juillet 1969."
-    },
-    {
-        id: 'marco_polo',
-        name: 'Marco Polo',
-        gender: 'm',
-        tags: ['exploration', 'italie', 'moyen-age', 'voyage', 'chine'],
-        description: "Explorateur vénitien qui voyagea jusqu'en Chine et raconta ses aventures."
-    },
-    {
-        id: 'christophe_colomb',
-        name: 'Christophe Colomb',
-        gender: 'm',
-        tags: ['exploration', 'italie', 'espagne', 'renaissance', 'navigateur'],
-        description: "Navigateur qui découvrit l'Amérique en 1492 en cherchant la route des Indes."
-    },
-    {
-        id: 'cousteau',
-        name: 'Jacques-Yves Cousteau',
-        gender: 'm',
-        tags: ['exploration', 'science', 'france', '20e', 'ocean'],
-        description: "Commandant Cousteau, explorateur des océans et inventeur du scaphandre autonome."
-    },
-
-    // === FIGURES MODERNES & TECH ===
-    {
-        id: 'steve_jobs',
-        name: 'Steve Jobs',
-        gender: 'm',
-        tags: ['tech', 'usa', '21e', 'entrepreneur', 'apple'],
-        description: "Cofondateur d'Apple, visionnaire qui a révolutionné l'informatique et le smartphone."
-    },
-    {
-        id: 'elon_musk',
-        name: 'Elon Musk',
-        gender: 'm',
-        tags: ['tech', 'usa', '21e', 'entrepreneur', 'espace'],
-        description: "Fondateur de SpaceX et Tesla, entrepreneur controversé et homme le plus riche du monde."
-    },
-
-    // === FIGURES SOCIALES & HUMANITAIRES ===
-    {
-        id: 'mere_teresa',
-        name: 'Mère Teresa',
-        gender: 'f',
-        tags: ['religion', 'inde', '20e', 'humanitaire', 'nobel', 'paix'],
-        description: "Religieuse qui consacra sa vie aux plus pauvres de Calcutta, Prix Nobel de la paix."
-    },
-    {
-        id: 'rosa_parks',
-        name: 'Rosa Parks',
-        gender: 'f',
-        tags: ['politique', 'usa', '20e', 'droits-civiques'],
-        description: "Mère du mouvement des droits civiques, elle refusa de céder sa place dans le bus."
-    },
-    {
-        id: 'simone_veil',
-        name: 'Simone Veil',
-        gender: 'f',
-        tags: ['politique', 'france', '20e', 'féminisme', 'loi'],
-        description: "Rescapée de la Shoah, elle fit légaliser l'IVG en France en 1975."
-    },
-    {
-        id: 'coco_chanel',
-        name: 'Coco Chanel',
-        gender: 'f',
-        tags: ['art', 'france', '20e', 'mode', 'luxe'],
-        description: "Créatrice de mode révolutionnaire, fondatrice de la maison Chanel."
-    },
-
-    // === RELIGION & SPIRITUALITÉ ===
-    {
-        id: 'bouddha',
-        name: 'Bouddha',
-        gender: 'm',
-        tags: ['religion', 'inde', 'antiquité', 'philosophie', 'paix'],
-        description: "Fondateur du bouddhisme, prince devenu sage, il enseigna le chemin vers l'éveil."
-    },
-
-    // === MÉCHANTS & FIGURES CONTROVERSÉES ===
-    {
-        id: 'al_capone',
-        name: 'Al Capone',
-        gender: 'm',
-        tags: ['usa', '20e', 'crime', 'mafia'],
-        description: "Gangster le plus célèbre de l'histoire, roi de la mafia à Chicago."
-    },
-    {
-        id: 'barbe_noire',
-        name: 'Barbe Noire',
-        gender: 'm',
-        tags: ['pirate', 'uk', '18e', 'ocean'],
-        description: "Pirate le plus redouté des Caraïbes, terreur des mers au XVIIIe siècle."
-    },
+    // ===== FICTION (441-505) =====
+    c('sherlock_holmes', 'Sherlock Holmes', 'm', 'fiction,uk,19e', "Détective du 221B Baker Street."),
+    c('james_bond', 'James Bond', 'm', 'fiction,uk,20e', "Agent secret 007."),
+    c('dark_vador', 'Dark Vador', 'm', 'fiction,usa,star-wars', "Le Seigneur Sith."),
+    c('batman', 'Batman', 'm', 'fiction,usa,super-hero', "Le Chevalier Noir de Gotham."),
+    c('superman', 'Superman', 'm', 'fiction,usa,super-hero', "L'Homme d'Acier."),
+    c('indiana_jones', 'Indiana Jones', 'm', 'fiction,usa,aventure', "Archéologue aventurier."),
+    c('harry_potter', 'Harry Potter', 'm', 'fiction,uk,magie', "Le sorcier à la cicatrice."),
+    c('spider_man', 'Spider-Man', 'm', 'fiction,usa,super-hero', "Peter Parker de Marvel."),
+    c('mario', 'Mario', 'm', 'fiction,japon,jeux-vidéo', "Mascotte de Nintendo."),
+    c('pikachu', 'Pikachu', 'm', 'fiction,japon,jeux-vidéo', "Mascotte de Pokémon."),
+    c('mickey_mouse', 'Mickey Mouse', 'm', 'fiction,usa,animation', "Symbole mondial de Disney."),
+    c('homer_simpson', 'Homer Simpson', 'm', 'fiction,usa,animation', "Père des Simpson."),
+    c('joker', 'Le Joker', 'm', 'fiction,usa,super-villain', "Ennemi juré de Batman."),
+    c('goku', 'Goku', 'm', 'fiction,japon,manga', "Héros de Dragon Ball."),
+    c('naruto', 'Naruto', 'm', 'fiction,japon,manga', "Ninja de Konoha."),
+    c('luffy', 'Luffy', 'm', 'fiction,japon,manga', "Capitaine de One Piece."),
+    c('wonder_woman', 'Wonder Woman', 'f', 'fiction,usa,super-hero', "Guerrière amazone de DC."),
+    c('lara_croft', 'Lara Croft', 'f', 'fiction,uk,jeux-vidéo', "Héroïne de Tomb Raider."),
+    c('elsa', 'Elsa', 'f', 'fiction,usa,animation', "Reine des Neiges de Disney."),
+    c('daenerys', 'Daenerys Targaryen', 'f', 'fiction,usa,tv', "Mère des Dragons (GoT)."),
+    c('jon_snow', 'Jon Snow', 'm', 'fiction,usa,tv', "Héros de Game of Thrones."),
+    c('bugs_bunny', 'Bugs Bunny', 'm', 'fiction,usa,animation', "Lapin malin des Looney Tunes."),
+    c('scooby_doo', 'Scooby-Doo', 'm', 'fiction,usa,animation', "Chien détective peureux."),
+    c('shrek', 'Shrek', 'm', 'fiction,usa,animation', "Ogre vert de DreamWorks."),
+    c('voldemort', 'Voldemort', 'm', 'fiction,uk,magie', "Ennemi de Harry Potter."),
+    c('frodon', 'Frodon Sacquet', 'm', 'fiction,uk,fantasy', "Porteur de l'Anneau."),
+    c('gandalf', 'Gandalf', 'm', 'fiction,uk,fantasy', "Mage du Seigneur des Anneaux."),
+    c('iron_man', 'Iron Man', 'm', 'fiction,usa,super-hero', "Tony Stark de Marvel."),
+    c('captain_america', 'Captain America', 'm', 'fiction,usa,super-hero', "Leader des Avengers."),
+    c('hulk', 'Hulk', 'm', 'fiction,usa,super-hero', "Le colosse vert de Marvel."),
+    c('thor', 'Thor', 'm', 'fiction,usa,super-hero', "Dieu du Tonnerre (Marvel)."),
+    c('black_panther', 'Black Panther', 'm', 'fiction,usa,super-hero', "T'Challa, roi du Wakanda."),
+    c('walter_white', 'Walter White', 'm', 'fiction,usa,tv', "Heisenberg (Breaking Bad)."),
+    c('dr_house', 'Dr House', 'm', 'fiction,usa,tv', "Médecin cynique et génial."),
+    c('ragnar_lodbrok', 'Ragnar Lodbrok', 'm', 'fiction,scandinavie,tv', "Héros viking."),
+    c('robin_des_bois', 'Robin des Bois', 'm', 'légende,uk,moyen-age', "Voleur au grand cœur."),
+    c('roi_arthur', 'Roi Arthur', 'm', 'légende,uk,moyen-age', "Porteur d'Excalibur."),
+    c('merlin', 'Merlin', 'm', 'légende,uk,moyen-age', "L'enchanteur légendaire."),
+    c('hercule', 'Hercule', 'm', 'mythologie,grece,antiquité', "Héros aux douze travaux."),
+    c('achille', 'Achille', 'm', 'mythologie,grece,antiquité', "Héros de la guerre de Troie."),
+    c('ulysse', 'Ulysse', 'm', 'mythologie,grece,antiquité', "Héros de l'Odyssée."),
+    c('zeus', 'Zeus', 'm', 'mythologie,grece,antiquité', "Dieu des dieux."),
+    c('athena', 'Athéna', 'f', 'mythologie,grece,antiquité', "Déesse de la sagesse."),
+    c('cleopatre_fictif', 'Cléopâtre (Astérix)', 'f', 'bd,france,antiquité', "Reine au nez célèbre."),
+    c('asterix', 'Astérix', 'm', 'bd,france,antiquité', "Petit guerrier gaulois."),
+    c('obelix', 'Obélix', 'm', 'bd,france,antiquité', "Livreur de menhirs."),
+    c('tintin', 'Tintin', 'm', 'bd,belgique,20e', "Journaliste aventurier."),
+    c('lucky_luke', 'Lucky Luke', 'm', 'bd,belgique,western', "Cowboy solitaire."),
+    c('donald_duck', 'Donald Duck', 'm', 'fiction,usa,animation', "Canard colérique de Disney."),
+    c('jack_sparrow', 'Jack Sparrow', 'm', 'fiction,usa,pirate', "Capitaine fantasque."),
+    c('king_kong', 'King Kong', 'm', 'fiction,usa,monstre', "Gorille géant."),
+    c('godzilla', 'Godzilla', 'm', 'fiction,japon,monstre', "Monstre radioactif japonais."),
+    c('pikachu_v2', 'Pikachu (Détective)', 'm', 'fiction,japon,jeux-vidéo', "Version détective de Pikachu."),
+    c('sonic', 'Sonic', 'm', 'fiction,japon,jeux-vidéo', "Hérisson le plus rapide du monde."),
+    c('lara_croft_v2', 'Lara Croft (Survivor)', 'f', 'fiction,uk,jeux-vidéo', "Version moderne de Lara Croft."),
 ];

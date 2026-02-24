@@ -110,8 +110,34 @@ export class GameEngine {
         // Fallback
         if (pool.length === 0) pool = SPORT_POOLS[this.gameMode] || characters;
 
-        const randomIndex = Math.floor(Math.random() * pool.length);
-        this.secretCharacter = pool[randomIndex];
+        // --- NO-REPEAT LOGIC ---
+        const storageKey = `played_ids_${this.gameMode}_${this.mode}`;
+        let playedIds = [];
+        try {
+            const saved = localStorage.getItem(storageKey);
+            playedIds = saved ? JSON.parse(saved) : [];
+        } catch (e) {
+            console.error("Failed to load played IDs", e);
+        }
+
+        // Filter pool to exclude played IDs
+        let remainingPool = pool.filter(c => !playedIds.includes(c.id));
+
+        // If pool is exhausted, reset
+        if (remainingPool.length === 0) {
+            console.log("Pool exhausted, resetting played list.");
+            playedIds = [];
+            remainingPool = pool;
+        }
+
+        const randomIndex = Math.floor(Math.random() * remainingPool.length);
+        this.secretCharacter = remainingPool[randomIndex];
+
+        // Save new ID
+        playedIds.push(this.secretCharacter.id);
+        localStorage.setItem(storageKey, JSON.stringify(playedIds));
+        // --- END NO-REPEAT LOGIC ---
+
         this.turnCount = 0;
         this.totalQuestionsAsked = 0;
         this.hintsUsed = 0;
