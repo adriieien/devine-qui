@@ -210,6 +210,15 @@ export default function GameInterface({ onExit, difficulty, mode, gameMode = 'hi
 
                 if (response.status === 'won') {
                     setGameStatus('won');
+                    onStatusChange?.('won', {
+                        score: response.score,
+                        rank: response.rank,
+                        character: engine.secretCharacter,
+                        turnCount: engine.turnCount,
+                        totalQuestionsAsked: engine.totalQuestionsAsked,
+                        maxTurns: engine.maxTurns,
+                        hintsUsed: engine.hintsUsed
+                    });
                     ScoreManager.saveScore({
                         characterName: engine.secretCharacter.name,
                         score: response.score,
@@ -264,6 +273,9 @@ export default function GameInterface({ onExit, difficulty, mode, gameMode = 'hi
             if (response) {
                 setMessages(prev => [...prev, { text: response.text, sender: 'ai' }]);
                 setGameStatus('lost');
+                onStatusChange?.('lost', {
+                    character: engine.secretCharacter
+                });
                 if (gameMode === 'daily') {
                     DailyManager.saveResult({
                         won: false,
