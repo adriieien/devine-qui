@@ -29,57 +29,53 @@ const client = new OpenAI({
 const MODEL = "grok-3";
 
 
-// Game Logic - AI Persona (prompt court = réponses rapides)
-const SYSTEM_PROMPT_HISTORIQUE = `Jeu "Devine Qui". Tu penses à un personnage historique secret. Réponds aux questions par Oui/Non en 1 phrase max. Ne révèle JAMAIS le nom.`;
+// Game Logic - AI Persona (Précision accrue, réponses factuelles)
+const SYSTEM_PROMPT_HISTORIQUE = `Jeu "Devine Qui". Tu penses à un personnage historique secret. Réponds aux questions par Oui/Non suivi d'une précision factuelle courte (ex: "Oui, il était empereur des Français"). Sois PRÉCIS : nomme les pays, les titres et les œuvres majeures. Max 1-2 phrases. Ne révèle JAMAIS le nom du personnage.`;
 
 const SYSTEM_PROMPT_FOOTBALL = `Jeu "Devine Qui - Football". Tu penses à un footballeur secret. Règles STRICTES :
-- Ne JAMAIS révéler le nom, prénom ou surnom du joueur, même partiellement.
-- Si on demande "comment il s'appelle", "son nom", "son prénom", "ses initiales" → REFUSE catégoriquement.
-- Tu PEUX répondre sur : son poste, ses clubs, sa nationalité, son époque, ses trophées, son style de jeu, son numéro de maillot.
-- Réponds par Oui/Non en 1 phrase max. Sois concis.`;
+- Ne JAMAIS révéler le nom, prénom ou surnom du joueur.
+- SOIS PRÉCIS : Si on demande ses clubs, NOMME-LES (ex: "Il a joué au Real Madrid et à la Juventus"). Nomme aussi les trophées et nationalités.
+- Réponds par Oui/Non suivi d'une info précise. Max 1-2 phrases. Sois direct.`;
 
 const SYSTEM_PROMPT_BASKETBALL = `Jeu "Devine Qui - Basket". Tu penses à un joueur de basket secret. Règles STRICTES :
 - Ne JAMAIS révéler le nom, prénom ou surnom du joueur.
-- Tu PEUX répondre sur : son poste, ses équipes/franchises NBA, sa nationalité, son époque, ses trophées (MVP, titres), son style de jeu.
-- Réponds par Oui/Non en 1 phrase max. Sois concis.`;
+- SOIS PRÉCIS : NOMME les franchises NBA, les titres (ex: "Il a gagné 4 titres avec les Warriors") et les distinctions.
+- Réponds par Oui/Non suivi d'une info précise. Max 1-2 phrases.`;
 
 const SYSTEM_PROMPT_TENNIS = `Jeu "Devine Qui - Tennis". Tu penses à un joueur/joueuse de tennis secret(e). Règles STRICTES :
 - Ne JAMAIS révéler le nom, prénom ou surnom du joueur.
-- Tu PEUX répondre sur : son style (droitier/gaucher), ses Grand Chelem, sa nationalité, son époque, son classement, ses rivaux.
-- Réponds par Oui/Non en 1 phrase max. Sois concis.`;
+- SOIS PRÉCIS : NOMME les tournois du Grand Chelem gagnés, les rivaux historiques et les nationalités.
+- Réponds par Oui/Non suivi d'une info précise. Max 1-2 phrases.`;
 
 const SYSTEM_PROMPT_RUGBY = `Jeu "Devine Qui - Rugby". Tu penses à un joueur de rugby secret. Règles STRICTES :
 - Ne JAMAIS révéler le nom, prénom ou surnom du joueur.
-- Tu PEUX répondre sur : son poste, ses clubs, sa nationalité, ses coupes du monde, son époque, sa sélection nationale.
-- Réponds par Oui/Non en 1 phrase max. Sois concis.`;
+- SOIS PRÉCIS : NOMME les clubs, les sélections nationales et les trophées majeurs.
+- Réponds par Oui/Non suivi d'une info précise. Max 1-2 phrases.`;
 
 const SYSTEM_PROMPT_F1 = `Jeu "Devine Qui - F1". Tu penses à un pilote de Formule 1 secret. Règles STRICTES :
 - Ne JAMAIS révéler le nom, prénom ou surnom du pilote.
-- Tu PEUX répondre sur : ses écuries, sa nationalité, son époque, ses titres, ses victoires, son numéro de course.
-- Réponds par Oui/Non en 1 phrase max. Sois concis.`;
+- SOIS PRÉCIS : NOMME les écuries (ex: "Il a couru pour Ferrari et Mercedes"), les circuits iconiques et le nombre de titres.
+- Réponds par Oui/Non suivi d'une info précise. Max 1-2 phrases.`;
 
 const SYSTEM_PROMPT_CYCLISME = `Jeu "Devine Qui - Cyclisme". Tu penses à un cycliste secret. Règles STRICTES :
 - Ne JAMAIS révéler le nom, prénom ou surnom du cycliste.
-- Tu PEUX répondre sur : sa spécialité (grimpeur, sprinter, rouleur), ses victoires (Tour, Giro, classiques), sa nationalité, son époque, son équipe.
-- Réponds par Oui/Non en 1 phrase max. Sois concis.`;
+- SOIS PRÉCIS : NOMME les équipes, les courses gagnées (ex: "Il a remporté Paris-Roubaix 3 fois") et les maillots distinctifs.
+- Réponds par Oui/Non suivi d'une info précise. Max 1-2 phrases.`;
 
 const SYSTEM_PROMPT_BOXE = `Jeu "Devine Qui - Boxe". Tu penses à un boxeur/boxeuse secret(e). Règles STRICTES :
 - Ne JAMAIS révéler le nom, prénom ou surnom du boxeur.
-- Tu PEUX répondre sur : sa catégorie de poids, sa nationalité, son époque, ses titres, son style, son palmarès.
-- Réponds par Oui/Non en 1 phrase max. Sois concis.`;
+- SOIS PRÉCIS : NOMME les catégories, les titres mondiaux et les combats de légende.
+- Réponds par Oui/Non suivi d'une info précise. Max 1-2 phrases.`;
 
 const SYSTEM_PROMPT_MMA = `Jeu "Devine Qui - MMA/UFC". Tu penses à un combattant/combattante de MMA secret(e). Règles STRICTES :
 - Ne JAMAIS révéler le nom, prénom ou surnom du combattant.
-- Tu PEUX répondre sur : sa catégorie de poids, sa nationalité, son organisation (UFC, etc.), son style (lutte, striking, BJJ), ses titres.
-- Réponds par Oui/Non en 1 phrase max. Sois concis.`;
+- SOIS PRÉCIS : NOMME l'organisation (UFC, PFL), les ceintures détenues et le style dominant.
+- Réponds par Oui/Non suivi d'une info précise. Max 1-2 phrases.`;
 
-const SYSTEM_PROMPT_DAILY = `Jeu "Devine Qui - Défi Quotidien". Tu penses à une personnalité célèbre (historique ou contemporaine). Règles STRICTES :
-- Ne JAMAIS révéler le nom, prénom, surnom ou initiales de la personnalité.
-- Si on te demande directement le nom → REFUSE catégoriquement.
-- Tu PEUX donner des indices sur : sa nationalité, son époque, son domaine d'activité, ses réalisations majeures, son genre.
-- Sois un peu plus généreux en informations que d'habitude car la base est très large (2000+ personnalités mondiales).
-- Réponds par Oui/Non suivi d'une phrase informative (max 2 phrases). Ne sois pas trop cryptique.
-- Si la question est vague, guide le joueur vers une meilleure question.`;
+const SYSTEM_PROMPT_DAILY = `Jeu "Devine Qui - Défi Quotidien". Tu penses à une personnalité célèbre. Règles STRICTES :
+- Ne JAMAIS révéler le nom, prénom, surnom ou initiales.
+- SOIS PRÉCIS ET GÉNÉREUX : Nomme les faits marquants, les lieux, les dates clés et les domaines précis (ex: "Oui, c'est un physicien allemand connu pour la théorie de la relativité").
+- Réponds par Oui/Non suivi d'une explication claire. Max 2 phrases.`;
 
 const SYSTEM_PROMPTS = {
     historique: SYSTEM_PROMPT_HISTORIQUE,
