@@ -65,7 +65,7 @@ function App() {
 
       {screen === 'game' && (
         <GameInterface
-          key={`${gameMode}-${Date.now()}`}
+          key={gameMode}
           onExit={gameMode === 'daily' ? handleDailyEnd : handleExit}
           difficulty={gameOptions.difficulty}
           mode={gameOptions.mode}
