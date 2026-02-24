@@ -320,7 +320,7 @@ export default function GameInterface({ onExit, difficulty, mode, gameMode = 'hi
             </div>
 
             <div className={styles.controlsArea}>
-                {gameStatus === 'playing' ? (
+                {gameStatus === 'playing' && (
                     <QuestionMenu
                         onAsk={handleAsk}
                         onGuess={handleGuess}
@@ -331,16 +331,19 @@ export default function GameInterface({ onExit, difficulty, mode, gameMode = 'hi
                         isLoading={isLoading}
                         gameMode={gameMode}
                     />
-                ) : gameStatus === 'lost' ? (
+                )}
+            </div>
+
+            {gameStatus === 'lost' && (
+                <div className={styles.lostOverlay}>
                     <div className={`${styles.endGameCard} glass-panel`}>
                         <h3>Perdu...</h3>
                         <p className={styles.lostText}>Le personnage mystère était <strong>{engine.secretCharacter?.name}</strong>.</p>
                         <p className={styles.lostDescription}>{engine.secretCharacter?.description}</p>
-                        <button onClick={handleRestartGame} className={styles.restartBtn}>🔄 Rejouer</button>
-                        <AdBanner format="auto" slot="" />
+                        <button onClick={handleRestartGame} className={styles.restartBtn}>🏠 Retour à l'accueil</button>
                     </div>
-                ) : null}
-            </div>
+                </div>
+            )}
 
             {gameStatus === 'won' && (
                 <>

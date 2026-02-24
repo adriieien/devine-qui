@@ -23,7 +23,7 @@ export default function AdBanner({ format = 'auto', slot = '', style = {} }) {
                 data-ad-client="ca-pub-5283007740349348"
                 data-ad-slot={slot}
                 data-ad-format={format}
-                data-full-width-responsive="true"
+                data-full-width-responsive="false"
                 ref={adRef}
             />
         </div>
