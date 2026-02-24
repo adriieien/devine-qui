@@ -5,19 +5,19 @@ import AdBanner from './AdBanner';
 export default function Layout({ children }) {
     return (
         <div className={styles.appContainer}>
-            {/* Left Sidebar Ad */}
+            {/* Left Sidebar */}
             <aside className={styles.sidebar}>
                 <div className={styles.adPlaceholder}>
                     <AdBanner format="vertical" slot="" />
                 </div>
             </aside>
 
-            {/* Main Application Content */}
+            {/* Main Application Area */}
             <main className={styles.mainContent}>
                 {children}
             </main>
 
-            {/* Right Sidebar Ad */}
+            {/* Right Sidebar */}
             <aside className={styles.sidebar}>
                 <div className={styles.adPlaceholder}>
                     <AdBanner format="vertical" slot="" />

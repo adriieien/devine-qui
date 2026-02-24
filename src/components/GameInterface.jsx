@@ -9,7 +9,7 @@ import InfoPanel from './InfoPanel';
 import AdBanner from './AdBanner';
 import styles from './GameInterface.module.css';
 
-export default function GameInterface({ onExit, difficulty, mode, gameMode = 'historique', dailyCharacter }) {
+export default function GameInterface({ onExit, difficulty, mode, gameMode = 'historique', dailyCharacter, onStatusChange }) {
     const [engine] = useState(() => new GameEngine());
     const [messages, setMessages] = useState([]);
     const [gameStatus, setGameStatus] = useState('playing');
@@ -132,6 +132,15 @@ export default function GameInterface({ onExit, difficulty, mode, gameMode = 'hi
                         score: response.score, rank: response.rank
                     }]);
                     setGameStatus('won');
+                    onStatusChange?.('won', {
+                        score: response.score,
+                        rank: response.rank,
+                        character: engine.secretCharacter,
+                        turnCount: engine.turnCount,
+                        totalQuestionsAsked: engine.totalQuestionsAsked,
+                        maxTurns: engine.maxTurns,
+                        hintsUsed: engine.hintsUsed
+                    });
                     // Save score
                     ScoreManager.saveScore({
                         characterName: engine.secretCharacter.name,
@@ -157,6 +166,9 @@ export default function GameInterface({ onExit, difficulty, mode, gameMode = 'hi
                     setMessages(prev => [...prev, { text: response.text, sender: 'ai' }]);
                     if (response.answer === 'lost') {
                         setGameStatus('lost');
+                        onStatusChange?.('lost', {
+                            character: engine.secretCharacter
+                        });
                         if (gameMode === 'daily') {
                             DailyManager.saveResult({
                                 won: false,
@@ -266,7 +278,6 @@ export default function GameInterface({ onExit, difficulty, mode, gameMode = 'hi
     };
 
     const handleRestartGame = () => {
-        // Return to home screen to avoid layout bugs on in-place restart
         onExit();
     };
 
@@ -333,30 +344,6 @@ export default function GameInterface({ onExit, difficulty, mode, gameMode = 'hi
                     />
                 )}
             </div>
-
-            {gameStatus === 'lost' && (
-                <div className={styles.lostOverlay}>
-                    <div className={`${styles.endGameCard} glass-panel`}>
-                        <h3>Perdu...</h3>
-                        <p className={styles.lostText}>Le personnage mystère était <strong>{engine.secretCharacter?.name}</strong>.</p>
-                        <p className={styles.lostDescription}>{engine.secretCharacter?.description}</p>
-                        <button onClick={handleRestartGame} className={styles.restartBtn}>🏠 Retour à l'accueil</button>
-                    </div>
-                </div>
-            )}
-
-            {gameStatus === 'won' && (
-                <VictoryScreen
-                    score={lastMsg.score}
-                    rank={lastMsg.rank}
-                    character={engine.secretCharacter}
-                    turnCount={engine.turnCount}
-                    totalQuestionsAsked={engine.totalQuestionsAsked}
-                    maxTurns={engine.maxTurns}
-                    hintsUsed={engine.hintsUsed}
-                    onRestart={handleRestartGame}
-                />
-            )}
         </div>
     );
 }
