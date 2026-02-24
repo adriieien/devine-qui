@@ -109,7 +109,6 @@ export default function HomeScreen({ onSelectMode, onDailyClick, dailyPlayed }) 
                 ))}
             </div>
 
-            <AdBanner format="auto" slot="" />
         </div>
     );
 }

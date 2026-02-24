@@ -1,0 +1,56 @@
+.appContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    background: transparent;
+}
+
+.sidebar {
+    display: none;
+    width: 180px;
+    flex-shrink: 0;
+    padding: 2rem 0.5rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 5;
+}
+
+.mainContent {
+    flex: 1;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+/* On wide screens, show sidebars */
+@media (min-width: 1200px) {
+    .sidebar {
+        display: block;
+    }
+
+    .mainContent {
+        max-width: 800px;
+    }
+}
+
+.adPlaceholder {
+    width: 100%;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}

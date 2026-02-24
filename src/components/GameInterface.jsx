@@ -346,19 +346,16 @@ export default function GameInterface({ onExit, difficulty, mode, gameMode = 'hi
             )}
 
             {gameStatus === 'won' && (
-                <>
-                    <VictoryScreen
-                        score={lastMsg.score}
-                        rank={lastMsg.rank}
-                        character={engine.secretCharacter}
-                        turnCount={engine.turnCount}
-                        totalQuestionsAsked={engine.totalQuestionsAsked}
-                        maxTurns={engine.maxTurns}
-                        hintsUsed={engine.hintsUsed}
-                        onRestart={handleRestartGame}
-                    />
-                    <AdBanner format="auto" slot="" />
-                </>
+                <VictoryScreen
+                    score={lastMsg.score}
+                    rank={lastMsg.rank}
+                    character={engine.secretCharacter}
+                    turnCount={engine.turnCount}
+                    totalQuestionsAsked={engine.totalQuestionsAsked}
+                    maxTurns={engine.maxTurns}
+                    hintsUsed={engine.hintsUsed}
+                    onRestart={handleRestartGame}
+                />
             )}
         </div>
     );

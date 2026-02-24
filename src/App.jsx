@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import HomeScreen from './components/HomeScreen'
 import StartScreen from './components/StartScreen'
 import GameInterface from './components/GameInterface'
 import DailyScreen from './components/DailyScreen'
+import Layout from './components/Layout'
 import DailyManager from './logic/DailyManager'
+import './styles/theme.css'
 
 function App() {
   const [screen, setScreen] = useState('home');
@@ -50,7 +52,7 @@ function App() {
   };
 
   return (
-    <main>
+    <Layout>
       {screen === 'home' && (
         <HomeScreen onSelectMode={handleSelectMode} onDailyClick={handleDailyClick} dailyPlayed={DailyManager.hasPlayedToday()} />
       )}
@@ -73,7 +75,7 @@ function App() {
           dailyCharacter={dailyCharacter}
         />
       )}
-    </main>
+    </Layout>
   )
 }
 
