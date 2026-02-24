@@ -201,7 +201,7 @@ export default function VictoryScreen({ score, rank, character, turnCount, total
                 </div>
 
                 <button onClick={onRestart} className={styles.restartBtn}>
-                    🔄 Rejouer
+                    🏠 Retour à l'accueil
                 </button>
             </div>
         </div>
